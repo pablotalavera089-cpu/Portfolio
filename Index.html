@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pablo Talavera — Artist Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#080706;--ink:#0f0d0b;--cream:#e9e4da;--warm:#f2ede4;--beige:#d5cfc5;--brown:#3b2f26;--mid:#604a38;--light:#8c7060;--gold:#b8975a;--gold2:#d4b278;--white:#fafaf8;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--cream);overflow-x:hidden;cursor:none;}
+img{display:block;max-width:100%;}a{text-decoration:none;color:inherit;}
+
+/* CURSOR */
+#cur{position:fixed;width:7px;height:7px;background:var(--cream);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;}
+#cur-r{position:fixed;width:34px;height:34px;border:1px solid rgba(233,228,218,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+
+/* GRAIN */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.45;animation:gr 6s steps(2) infinite;}
+@keyframes gr{0%,100%{transform:translate(0,0);}20%{transform:translate(-2%,-3%);}40%{transform:translate(3%,2%);}60%{transform:translate(-1%,3%);}80%{transform:translate(2%,-1%);}}
+
+/* MAIN NAV */
+#mnav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.4rem 2.6rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s,backdrop-filter .4s;}
+#mnav.scrolled{background:rgba(8,7,6,.82);backdrop-filter:blur(14px);}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--cream);opacity:.8;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.55;transition:opacity .25s;}
+.nav-links a:hover{opacity:1;}
+
+/* PILL NAV */
+#pnav{position:fixed;top:5rem;left:50%;transform:translateX(-50%);z-index:490;background:rgba(10,9,8,.88);backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(233,228,218,.1);border-radius:999px;padding:.42rem .48rem;display:flex;gap:.28rem;box-shadow:0 8px 40px rgba(0,0,0,.55);}
+.pb{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(233,228,218,.5);padding:.4rem 1rem;border-radius:999px;border:none;background:transparent;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s;}
+.pb:hover{color:var(--cream);background:rgba(233,228,218,.07);}
+.pb.on{background:var(--cream);color:var(--ink);}
+
+/* PAGES */
+.pg{display:none;}
+.pg.on{display:block;animation:pgIn .5s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes pgIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* UTILS */
+.serif{font-family:'Cormorant Garamond',serif;font-weight:300;}
+.mono{font-family:'DM Mono',monospace;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(233,228,218,.18);color:rgba(233,228,218,.45);padding:.16rem .52rem;border-radius:3px;}
+.tag-dk{border-color:rgba(59,47,38,.22);color:var(--mid);background:transparent;}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:none;}
+.rl{opacity:0;transform:translateX(-28px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
+.rl.in{opacity:1;transform:none;}
+.rr{opacity:0;transform:translateX(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);}
+.rr.in{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
+
+
+
+
+/* ══ HOME — ORGANIC MODERN ═══════════════════════════════════════ */
+/* HERO */
+#hero{position:relative;height:100vh;background:var(--black);display:flex;align-items:center;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
+.orb1{width:60vw;height:60vw;top:-15%;right:-10%;background:radial-gradient(circle,rgba(90,58,28,.42) 0%,transparent 70%);}
+.orb2{width:38vw;height:38vw;bottom:0;left:-12%;background:radial-gradient(circle,rgba(58,42,22,.32) 0%,transparent 70%);}
+.orb3{width:22vw;height:22vw;top:28%;left:40%;background:radial-gradient(circle,rgba(184,151,90,.05) 0%,transparent 70%);}
+.hero-layout{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:0 5vw;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4rem;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;opacity:0;transform:translateX(-22px);animation:slr .8s cubic-bezier(.16,1,.3,1) .2s forwards;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(5rem,10vw,9rem);line-height:.86;letter-spacing:-.025em;color:var(--cream);overflow:hidden;}
+.hero-name .ln{display:block;transform:translateX(-60px);opacity:0;animation:slr 1s cubic-bezier(.16,1,.3,1) forwards;}
+.hero-name .ln:nth-child(1){animation-delay:.35s;}
+.hero-name .ln:nth-child(2){animation-delay:.48s;}
+.hero-desc{margin-top:2.4rem;font-size:1rem;line-height:1.75;color:rgba(233,228,218,.48);max-width:440px;opacity:0;transform:translateX(-22px);animation:slr .9s cubic-bezier(.16,1,.3,1) .75s forwards;}
+.hero-btns{margin-top:2.8rem;display:flex;gap:1rem;align-items:center;opacity:0;animation:fdi 1s ease 1.1s forwards;}
+.btn-pri{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:var(--cream);color:var(--ink);border:none;border-radius:999px;padding:.8rem 2rem;cursor:pointer;transition:background .25s,transform .2s;font-weight:500;}
+.btn-pri:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-gh{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:transparent;color:var(--cream);border:1px solid rgba(233,228,218,.22);border-radius:999px;padding:.8rem 2rem;cursor:pointer;transition:border-color .25s,transform .2s;}
+.btn-gh:hover{border-color:var(--cream);transform:translateY(-2px);}
+.hero-right-col{display:flex;flex-direction:column;align-items:flex-end;gap:1.8rem;opacity:0;animation:sll .9s cubic-bezier(.16,1,.3,1) .6s forwards;}
+.hstat{text-align:right;}
+.hstat-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--cream);line-height:1;}
+.hstat-l{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(233,228,218,.32);margin-top:.18rem;}
+.h-div{width:1px;height:50px;background:linear-gradient(to bottom,transparent,rgba(233,228,218,.18),transparent);margin-left:auto;}
+.him{text-align:right;}
+.him-h{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:.65;}
+.him-l{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:rgba(233,228,218,.22);margin-top:.22rem;}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.45rem;opacity:0;animation:fdi .8s ease 1.8s forwards;}
+.hero-scroll span{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:rgba(233,228,218,.2);}
+.sc-bar{width:1px;height:32px;background:linear-gradient(to bottom,rgba(233,228,218,.32),transparent);animation:spls 2.2s ease infinite;}
+@keyframes slr{to{opacity:1;transform:translateX(0);}}
+@keyframes sll{to{opacity:1;}}
+@keyframes fdi{to{opacity:1;}}
+@keyframes spls{0%,100%{opacity:.22;}50%{opacity:1;}}
+
+/* ABOUT */
+.about-strip{background:var(--warm);color:var(--brown);}
+.about-inner{max-width:1280px;margin:0 auto;padding:7rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img-col{position:relative;}
+.about-text-col{display:flex;flex-direction:column;justify-content:center;}
+.about-img-wrap{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:.78;box-shadow:0 28px 75px rgba(0,0,0,.16);}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.about-img-tag{position:absolute;bottom:1.4rem;left:1.4rem;background:rgba(250,242,228,.88);backdrop-filter:blur(8px);border-radius:999px;padding:.42rem 1rem;font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--brown);}
+.about-pre{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.about-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;line-height:.9;color:var(--brown);margin-bottom:1.8rem;}
+.about-body{font-size:.97rem;line-height:1.85;color:var(--mid);margin-bottom:2rem;}
+.about-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.2rem;}
+.about-pill{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(59,47,38,.18);color:var(--mid);padding:.32rem .8rem;border-radius:999px;}
+.about-sig{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:4px;text-transform:uppercase;font-style:italic;color:var(--light);padding-top:1.4rem;border-top:1px solid rgba(59,47,38,.14);}
+
+/* SKILLS GRID */
+.skills-band{background:var(--black);padding:6rem 5vw;}
+.skills-band-inner{max-width:1280px;margin:0 auto;}
+.skills-pre{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:3rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(233,228,218,.055);}
+.skill-block{background:var(--black);padding:2rem 1.6rem;transition:background .28s;}
+.skill-block:hover{background:rgba(233,228,218,.028);}
+.skill-block-icon{font-size:1.3rem;margin-bottom:.9rem;opacity:.65;}
+.skill-block-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);margin-bottom:.55rem;}
+.skill-block-items{display:flex;flex-direction:column;gap:.3rem;}
+.sbi{font-size:.78rem;color:rgba(233,228,218,.38);line-height:1.4;padding-left:.65rem;position:relative;}
+.sbi::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.45;font-size:.65rem;}
+
+/* SCHEDULE */
+.sched-sec{background:var(--warm);color:var(--brown);padding:6rem 5vw;scroll-margin-top:6rem;}
+.sched-inner{max-width:1280px;margin:0 auto;}
+.sched-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.sched-pre{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;}
+.sched-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:.9;color:var(--brown);}
+.sched-note{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--light);opacity:.55;font-style:italic;}
+.sched-list{display:flex;flex-direction:column;}
+.sched-row{display:grid;grid-template-columns:110px 1fr auto;gap:2rem;align-items:center;padding:1.3rem 0.8rem;border-bottom:1px solid rgba(59,47,38,.09);border-radius:8px;transition:background .22s,padding .22s;cursor:default;}
+.sched-row:first-child{border-top:1px solid rgba(59,47,38,.09);}
+.sched-row:hover{background:rgba(59,47,38,.04);}
+.sched-row.upcoming .sched-event{color:var(--brown);}
+.sched-row.past .sched-event{color:var(--light);opacity:.6;}
+.sched-date-col{display:flex;flex-direction:column;}
+.sched-day{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1;color:var(--gold);}
+.sched-month{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:var(--light);margin-top:.15rem;}
+.sched-info-col{}
+.sched-event{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:400;margin-bottom:.2rem;}
+.sched-loc{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--light);}
+.sched-badge{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(59,47,38,.18);color:var(--mid);padding:.2rem .6rem;border-radius:999px;white-space:nowrap;}
+.sched-badge.fire{border-color:rgba(184,151,90,.3);color:var(--gold);}
+.sched-badge.workshop{border-color:rgba(96,74,56,.3);color:var(--mid);}
+.sched-badge.perf{border-color:rgba(96,74,56,.25);color:var(--mid);}
+.sched-empty{padding:3rem 0;text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(59,47,38,.3);font-style:italic;}
+
+/* PROJECT */
+.proj-sec{background:var(--warm);color:var(--brown);padding:6rem 5vw;border-top:1px solid rgba(59,47,38,.08);}
+.proj-inner{max-width:1280px;margin:0 auto;}
+.proj-hdr{display:flex;justify-content:space-between;padding-bottom:.6rem;border-bottom:1px solid rgba(59,47,38,.16);margin-bottom:3.5rem;}
+.proj-hdr-t{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--light);}
+.pgr{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start;}
+.prh{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,4.5vw,4.2rem);font-weight:300;line-height:.9;margin-bottom:2.2rem;}
+.pnr{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;line-height:1;}
+.pnl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--light);}
+.pul{padding-left:1.05rem;margin-top:.65rem;}
+.pul li{font-size:.9rem;line-height:1.78;color:var(--mid);margin-bottom:.28rem;}
+.pul li strong{color:var(--brown);font-style:italic;text-decoration:underline;text-underline-offset:3px;}
+
+/* CONTACT CTA */
+.contact-cta{background:var(--black);padding:6rem 5vw;}
+.cta-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:5rem;align-items:center;}
+.cta-pre{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:.9;color:var(--cream);margin-bottom:1.4rem;}
+.cta-sub{font-size:.95rem;color:rgba(233,228,218,.42);line-height:1.7;max-width:460px;}
+.cta-right{display:flex;flex-direction:column;gap:.85rem;align-items:flex-end;}
+.cta-btn{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:var(--cream);color:var(--ink);border:none;border-radius:999px;padding:.85rem 2.1rem;cursor:pointer;transition:background .22s,transform .2s;white-space:nowrap;}
+.cta-btn:hover{background:var(--gold2);transform:translateY(-2px);}
+.cta-btn-gh{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;background:transparent;color:var(--cream);border:1px solid rgba(233,228,218,.2);border-radius:999px;padding:.85rem 2.1rem;cursor:pointer;transition:border-color .22s,transform .2s;white-space:nowrap;}
+.cta-btn-gh:hover{border-color:var(--cream);transform:translateY(-2px);}
+.cta-detail{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(233,228,218,.32);}
+.cta-detail a{color:rgba(233,228,218,.48);transition:color .2s;}
+.cta-detail a:hover{color:var(--cream);}
+
+/* CLOSING */
+.cls{position:relative;height:55vh;background:var(--black);display:flex;align-items:center;overflow:hidden;}
+.cls-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(42,28,16,.52) 0%,transparent 70%);}
+.cls-in{position:relative;z-index:2;padding:0 5vw;max-width:1280px;margin:0 auto;width:100%;display:flex;align-items:center;gap:2rem;}
+.cls-vl{width:2px;height:60px;background:rgba(233,228,218,.2);}
+.cls-txt{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;color:var(--cream);line-height:1.15;letter-spacing:.05em;text-transform:uppercase;}
+.cls-ft{position:absolute;bottom:2rem;left:5vw;right:5vw;display:flex;justify-content:space-between;align-items:center;}
+.cls-ft-t{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:4px;text-transform:uppercase;color:rgba(233,228,218,.26);font-style:italic;}
+.cls-fl{flex:1;height:1px;background:rgba(233,228,218,.09);margin:0 1.8rem;}
+
+/* RESPONSIVE HOME */
+@media(max-width:860px){
+  .hero-layout{grid-template-columns:1fr;}
+  .hero-right-col{flex-direction:row;align-items:center;justify-content:space-between;animation:none;opacity:1;}
+  .h-div{display:none;}
+  .about-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .about-img-col{position:relative;}
+.about-text-col{display:flex;flex-direction:column;justify-content:center;}
+.about-img-wrap{aspect-ratio:1.2;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .sched-row{grid-template-columns:80px 1fr;}.sched-badge{display:none;}
+  .cta-inner{grid-template-columns:1fr;}.cta-right{align-items:flex-start;}
+  .pgr{grid-template-columns:1fr;gap:2.5rem;}
+}
+
+/* SERVICES */
+.svcsec{background:var(--warm);color:var(--brown);}
+.svcg{display:grid;grid-template-columns:1fr 1fr;}
+.svci{overflow:hidden;min-height:100vh;}
+.svci img{width:100%;height:100%;object-fit:cover;filter:grayscale(22%);}
+.svct{padding:5.5rem 4.5rem;display:flex;flex-direction:column;justify-content:center;}
+.svch{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.8vw,4.8rem);font-weight:300;line-height:.9;border-bottom:2px solid var(--brown);padding-bottom:.45rem;margin-bottom:1.8rem;}
+.svcb{font-size:.93rem;line-height:1.8;color:var(--mid);margin-bottom:1.1rem;text-align:justify;}
+.svcl{padding-left:1.05rem;margin-bottom:1.1rem;}
+.svcl li{font-size:.9rem;line-height:1.8;color:var(--mid);margin-bottom:.28rem;}
+.svcl li strong{color:var(--brown);}
+
+/* CONTACT */
+.ctsec{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+.ctt{background:var(--warm);color:var(--brown);padding:6.5rem 5.5rem;display:flex;flex-direction:column;justify-content:center;}
+.cth{font-family:'Cormorant Garamond',serif;font-size:clamp(3.8rem,8.5vw,7.5rem);font-weight:300;line-height:.86;margin-bottom:4.5rem;}
+.ctit{margin-bottom:2.3rem;}
+.ctlbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:5px;text-transform:uppercase;color:var(--brown);font-weight:500;margin-bottom:.38rem;}
+.ctval{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--mid);}
+.ctval a{transition:color .2s;}
+.ctval a:hover{color:var(--brown);}
+.ctimg{overflow:hidden;background:var(--black);}
+.ctimg img{width:100%;height:100%;object-fit:cover;filter:contrast(1.1) brightness(.84);}
+
+/* CLOSING */
+.cls{position:relative;height:100vh;background:var(--black);display:flex;align-items:center;overflow:hidden;}
+.cls-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(42,28,16,.55) 0%,transparent 70%);}
+.cls-in{position:relative;z-index:2;padding:0 4.5rem;display:flex;align-items:center;gap:2.2rem;}
+.cls-vl{width:2px;height:65px;background:rgba(233,228,218,.22);}
+.cls-txt{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4.5vw,3.8rem);font-weight:300;color:var(--cream);line-height:1.15;letter-spacing:.05em;text-transform:uppercase;}
+.cls-ft{position:absolute;bottom:2.3rem;left:4.5rem;right:4.5rem;display:flex;justify-content:space-between;align-items:center;}
+.cls-ft-t{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(233,228,218,.28);font-style:italic;}
+.cls-fl{flex:1;height:1px;background:rgba(233,228,218,.1);margin:0 1.8rem;}
+
+/* ══ WORKSHOPS PAGE ══════════════════ */
+.wsp{background:var(--black);min-height:100vh;padding-top:9rem;}
+.wsh{padding:0 3.8rem 4.5rem;}
+.wsh-lbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+.wsh-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:300;line-height:.88;color:var(--cream);margin-bottom:1.3rem;}
+.wsh-sub{font-size:.88rem;color:rgba(233,228,218,.38);max-width:520px;line-height:1.7;}
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(233,228,218,.055);}
+.wcard{background:var(--black);padding:2.6rem 2rem;position:relative;overflow:hidden;cursor:pointer;transition:background .32s;border-bottom:1px solid rgba(233,228,218,.04);}
+.wcard::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .48s cubic-bezier(.16,1,.3,1);}
+.wcard:hover::after{width:100%;}
+.wcard:hover{background:rgba(233,228,218,.028);}
+.wnum{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;color:rgba(233,228,218,.07);line-height:1;margin-bottom:1.2rem;transition:color .32s;}
+.wcard:hover .wnum{color:rgba(233,228,218,.16);}
+.wttl{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:400;color:var(--cream);line-height:1.25;margin-bottom:.55rem;}
+.wsub{font-size:.78rem;color:rgba(233,228,218,.35);font-style:italic;line-height:1.5;margin-bottom:1.3rem;}
+.wtags{display:flex;flex-wrap:wrap;gap:.32rem;}
+
+/* WORKSHOP MODAL */
+.wmo{position:fixed;inset:0;background:rgba(7,6,5,.86);backdrop-filter:blur(9px);z-index:800;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .32s;}
+.wmo.open{opacity:1;pointer-events:all;}
+.wm{background:var(--warm);color:var(--brown);border-radius:18px;max-width:800px;width:100%;margin:auto;overflow:hidden;transform:translateY(18px);transition:transform .38s cubic-bezier(.16,1,.3,1);}
+.wmo.open .wm{transform:none;}
+.wmt{background:var(--brown);color:var(--cream);padding:2.2rem 2.8rem 1.8rem;position:relative;}
+.wmc{position:absolute;top:1.4rem;right:1.6rem;background:rgba(233,228,218,.1);border:none;color:var(--cream);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.wmc:hover{background:rgba(233,228,218,.2);}
+.wm-cat{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);margin-bottom:.65rem;}
+.wm-ttl{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;line-height:1.1;margin-bottom:.45rem;}
+.wm-sub{font-size:.88rem;color:rgba(233,228,218,.55);font-style:italic;}
+.wmb{padding:2.2rem 2.8rem;}
+.wms{margin-bottom:1.8rem;}
+.wmst{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:var(--light);margin-bottom:.8rem;padding-bottom:.45rem;border-bottom:1px solid rgba(59,47,38,.14);}
+.wmb p{font-size:.93rem;line-height:1.8;color:var(--mid);margin-bottom:.75rem;}
+.wmb ul{padding-left:1.05rem;}
+.wmb ul li{font-size:.9rem;line-height:1.75;color:var(--mid);margin-bottom:.28rem;}
+.wat{width:100%;border-collapse:collapse;}
+.wat th{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);background:var(--brown);padding:.65rem .8rem;text-align:left;}
+.wat td{padding:.65rem .8rem;font-size:.86rem;line-height:1.5;border-bottom:1px solid rgba(59,47,38,.08);}
+.wat tr:nth-child(even) td{background:rgba(59,47,38,.04);}
+.wat td:first-child{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--gold);white-space:nowrap;}
+.wat td:nth-child(2){font-weight:500;color:var(--brown);}
+.wmtags{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:.9rem;}
+.wmhook{background:var(--brown);border-radius:9px;padding:1.2rem 1.5rem;margin-top:.45rem;}
+.wmhook p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream);line-height:1.6;margin:0;}
+
+/* ══ PERFORMANCE PAGE ══════════════ */
+.perfp{background:var(--black);min-height:100vh;padding-top:9rem;}
+.perfh{padding:0 3.8rem 4.5rem;}
+.perfh-lbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+.perfh-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:300;line-height:.88;color:var(--cream);margin-bottom:1.3rem;}
+.perfh-sub{font-size:.88rem;color:rgba(233,228,218,.38);max-width:520px;line-height:1.7;}
+.perf-cards{padding:0 3.8rem 5rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;}
+.pc{background:rgba(233,228,218,.038);border:1px solid rgba(233,228,218,.075);border-radius:14px;overflow:hidden;transition:border-color .3s,transform .3s;}
+.pc:hover{border-color:rgba(184,151,90,.32);transform:translateY(-3px);}
+.pc.wide{grid-column:span 2;}
+.pc-hd{background:rgba(233,228,218,.055);padding:1.6rem 1.8rem;border-bottom:1px solid rgba(233,228,218,.05);}
+.pc-ico{font-size:1.65rem;margin-bottom:.65rem;}
+.pc-ttl{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--cream);margin-bottom:.28rem;}
+.pc-type{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);}
+.pc-bd{padding:1.6rem 1.8rem;}
+.pc-bd p{font-size:.88rem;line-height:1.75;color:rgba(233,228,218,.52);margin-bottom:1.1rem;}
+.pc-specs{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.3rem;}
+.pc-row{display:flex;gap:.8rem;align-items:flex-start;}
+.pc-key{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);min-width:86px;padding-top:.08rem;flex-shrink:0;}
+.pc-val{font-size:.84rem;color:rgba(233,228,218,.62);line-height:1.5;}
+.pc-tags{display:flex;flex-wrap:wrap;gap:.32rem;}
+
+/* ══ SHOWREEL PAGE ══════════════════ */
+.reelp{background:var(--black);min-height:100vh;padding-top:9rem;}
+.reelh{padding:0 3.8rem 4.5rem;}
+.reelh-lbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+.reelh-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:300;line-height:.88;color:var(--cream);margin-bottom:1.3rem;}
+.reelh-sub{font-size:.88rem;color:rgba(233,228,218,.38);max-width:520px;line-height:1.7;}
+.reel-feat{padding:0 3.8rem 3.5rem;}
+.reel-feat-lbl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:rgba(233,228,218,.35);margin-bottom:1.1rem;}
+.vembed{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#111;box-shadow:0 20px 70px rgba(0,0,0,.55);}
+.vembed iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.vembed-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(135deg,#111,#1a1a1a);}
+.vplay{width:58px;height:58px;border-radius:50%;background:rgba(233,228,218,.09);border:1.5px solid rgba(233,228,218,.18);display:flex;align-items:center;justify-content:center;font-size:1.4rem;cursor:pointer;transition:background .22s;}
+.vplay:hover{background:rgba(233,228,218,.18);}
+.vembed-ph p{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:rgba(233,228,218,.25);text-align:center;max-width:260px;line-height:1.6;}
+.reel-add{padding:0 3.8rem 2.8rem;}
+.reel-add-lbl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:rgba(233,228,218,.35);margin-bottom:.7rem;}
+.reel-row{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;}
+.ri{flex:1;min-width:220px;background:rgba(233,228,218,.048);border:1px solid rgba(233,228,218,.1);border-radius:7px;padding:.65rem .9rem;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--cream);outline:none;transition:border-color .22s;}
+.ri:focus{border-color:rgba(184,151,90,.48);}
+.ri::placeholder{color:rgba(233,228,218,.22);}
+.radd{background:var(--gold);color:var(--ink);border:none;border-radius:7px;padding:.65rem 1.3rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:background .22s;white-space:nowrap;}
+.radd:hover{background:var(--gold2);}
+.reel-grid-sec{padding:0 3.8rem 5rem;}
+.rgrid-hdr{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:rgba(233,228,218,.32);margin-bottom:1.4rem;padding-bottom:.55rem;border-bottom:1px solid rgba(233,228,218,.07);}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+.ri-card{border-radius:10px;overflow:hidden;background:#111;cursor:pointer;position:relative;transition:transform .28s;}
+.ri-card:hover{transform:scale(1.02);}
+.ri-thumb{position:relative;padding-top:56.25%;background:#1a1a1a;}
+.ri-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.ri-thumb-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#141414,#1e1e1e);}
+.ri-thumb-ph span{font-size:1.8rem;opacity:.18;}
+.ri-info{padding:.9rem 1rem;}
+.ri-ttl{font-size:.86rem;color:rgba(233,228,218,.65);line-height:1.4;margin-bottom:.3rem;}
+.ri-meta{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(233,228,218,.22);}
+.ri-del{position:absolute;top:.5rem;right:.5rem;background:rgba(0,0,0,.62);border:none;color:rgba(255,255,255,.45);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.68rem;opacity:0;transition:opacity .2s;}
+.ri-card:hover .ri-del{opacity:1;}
+.reel-ph-sec{padding:0 3.8rem 5rem;}
+.reel-ph-lbl{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:rgba(233,228,218,.32);margin-bottom:1.4rem;padding-bottom:.55rem;border-bottom:1px solid rgba(233,228,218,.07);}
+.reel-ph-row{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;}
+
+/* RESPONSIVE */
+@media(max-width:880px){
+  #mnav .nav-links{display:none;}
+  #pnav{top:4.2rem;}
+  .pb{font-size:.56rem;padding:.36rem .7rem;}
+  .split,.sband,.ctsec,.svcg{grid-template-columns:1fr;}
+  .si,.ctimg,.svci{min-height:50vw;}
+  .st,.ctt,.svct{padding:2.8rem 1.6rem;}
+  .hero-in{padding:7rem 1.6rem 2.8rem;}
+  .wgrid,.perf-cards{grid-template-columns:1fr;}
+  .pc.wide{grid-column:span 1;}
+  .rgrid{grid-template-columns:1fr 1fr;}
+  .pgrid{grid-template-columns:1fr;max-width:240px;margin:2.5rem auto 0;}
+  .pgr{grid-template-columns:1fr;gap:2.2rem;}
+  .sband{padding:2.8rem 1.6rem;gap:1.8rem;}
+  .wsh,.reelh,.perfh,.reel-feat,.reel-add,.reel-grid-sec,.reel-ph-sec,.perf-cards,.proj-sec,.psec{padding-left:1.6rem;padding-right:1.6rem;}
+  .wgrid{grid-template-columns:1fr;}
+  .wm{border-radius:0;}
+  .wmb,.wmt{padding:1.8rem 1.4rem;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-r"></div><div class="grain"></div>
+
+<!-- MAIN NAV -->
+<nav id="mnav">
+  <div class="nav-brand">Pablo Talavera</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="gp('home');return false;">Home</a></li>
+    <li><a href="#" onclick="gp('home');setTimeout(()=>document.querySelector('#about')?.scrollIntoView({behavior:'smooth'}),100);return false;">About</a></li>
+    <li><a href="#" onclick="gp('home');setTimeout(()=>document.querySelector('.proj-sec')?.scrollIntoView({behavior:'smooth'}),100);return false;">Projects</a></li>
+    <li><a href="#" onclick="gp('home');setTimeout(()=>document.querySelector('.ctsec')?.scrollIntoView({behavior:'smooth'}),100);return false;">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PILL NAV -->
+<div id="pnav">
+  <button class="pb on" onclick="gp('home')">Portfolio</button>
+  <button class="pb" onclick="gp('workshops')">Workshops</button>
+  <button class="pb" onclick="gp('performance')">Performances</button>
+  <button class="pb" onclick="gp('showreel')">Showreel</button>
+</div>
+
+<!-- ══════════════ PAGE: HOME ══════════════ -->
+<div id="pg-home" class="pg on">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+  <div class="hero-layout">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Performance Artist &nbsp;·&nbsp; Europe</div>
+      <h1 class="hero-name">
+        <span class="ln">Pablo</span>
+        <span class="ln">Talavera</span>
+      </h1>
+      <p class="hero-desc">Physical theatre · Circus arts · Immersive experiences</p>
+      <div class="hero-btns">
+        <button class="btn-pri" onclick="document.querySelector('.sched-sec').scrollIntoView({behavior:'smooth'})">Where I'll Be Next</button>
+        <button class="btn-gh" onclick="document.querySelector('.contact-cta').scrollIntoView({behavior:'smooth'})">Contact</button>
+      </div>
+    </div>
+    <div class="hero-right-col">
+      <div class="hstat">
+        <div class="hstat-n" data-count="8" data-fmt="n">8</div>
+        <div class="hstat-l">Years Experience</div>
+      </div>
+      <div class="h-div"></div>
+      <div class="hstat">
+        <div class="hstat-n" data-count="20" data-fmt="p">20+</div>
+        <div class="hstat-l">Festivals</div>
+      </div>
+      <div class="h-div"></div>
+      <div class="him">
+        <div class="him-h">@echo_between</div>
+        <div class="him-l">Instagram</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="sc-bar"></div><span>Scroll</span></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="about-img-col rl">
+      <div class="about-img-wrap">
+        <img src="/mnt/user-data/uploads/5244.jpg" alt="Pablo Talavera" onerror="this.style.background='#b0a898'"/>
+      </div>
+    </div>
+    <div class="about-text-col">
+      <div class="about-pre rv">About</div>
+      <h2 class="about-heading rv d1">Pablo<br/>Talavera</h2>
+      <p class="about-body rv d2">Versatile artist merging movement, space, and light into immersive experiences. 8 years in circus arts, physical theatre, and stage design — from intimate performances to large-scale festivals.</p>
+      <div class="about-pills rv d3">
+        <span class="about-pill">Physical Theatre</span>
+        <span class="about-pill">Contact Staff</span>
+        <span class="about-pill">Fire Performance</span>
+        <span class="about-pill">Stage Design</span>
+        <span class="about-pill">Contact Improv</span>
+        <span class="about-pill">Flying Pole</span>
+      </div>
+      <div class="about-sig rv d4">@echo_between</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-band">
+  <div class="skills-band-inner">
+    <div class="skills-pre rv">Disciplines</div>
+    <div class="skills-grid">
+      <div class="skill-block rv d1">
+        <div class="skill-block-icon">🎭</div>
+        <div class="skill-block-title">Performance</div>
+        <div class="skill-block-items">
+          <div class="sbi">Physical Theatre</div>
+          <div class="sbi">Street & Stage</div>
+          <div class="sbi">Immersive Theatre</div>
+        </div>
+      </div>
+      <div class="skill-block rv d2">
+        <div class="skill-block-icon">🥢</div>
+        <div class="skill-block-title">Circus</div>
+        <div class="skill-block-items">
+          <div class="sbi">Contact Staff</div>
+          <div class="sbi">Fire Performance</div>
+          <div class="sbi">Flying Pole</div>
+        </div>
+      </div>
+      <div class="skill-block rv d3">
+        <div class="skill-block-icon">🌊</div>
+        <div class="skill-block-title">Movement</div>
+        <div class="skill-block-items">
+          <div class="sbi">Contact Improvisation</div>
+          <div class="sbi">Partner Acrobatics</div>
+          <div class="sbi">Contemporary Dance</div>
+        </div>
+      </div>
+      <div class="skill-block rv d4">
+        <div class="skill-block-icon">🏗️</div>
+        <div class="skill-block-title">Space</div>
+        <div class="skill-block-items">
+          <div class="sbi">Stage Design</div>
+          <div class="sbi">Light Installations</div>
+          <div class="sbi">Festival Architecture</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="sched-sec">
+  <div class="sched-inner">
+    <div class="sched-top rv">
+      <div>
+        <div class="sched-pre">On the Road</div>
+        <h2 class="sched-title">Where I'll Be Next</h2>
+      </div>
+      <div class="sched-note">Updated as dates are confirmed</div>
+    </div>
+    <div class="sched-list rv d1">
+      <div class="sched-row past">
+        <div class="sched-date-col"><div class="sched-day">03</div><div class="sched-month">Feb 2025</div></div>
+        <div class="sched-info-col">
+          <div class="sched-event">Fai Jai Flow Festival</div>
+          <div class="sched-loc">Pai, Thailand</div>
+        </div>
+        <span class="sched-badge fire">Fire Safety</span>
+      </div>
+      <div class="sched-row upcoming">
+        <div class="sched-date-col"><div class="sched-day">—</div><div class="sched-month">Spring 25</div></div>
+        <div class="sched-info-col">
+          <div class="sched-event">European Festival Circuit</div>
+          <div class="sched-loc">Europe — TBC</div>
+        </div>
+        <span class="sched-badge perf">Performance</span>
+      </div>
+      <div class="sched-row upcoming">
+        <div class="sched-date-col"><div class="sched-day">—</div><div class="sched-month">Summer 25</div></div>
+        <div class="sched-info-col">
+          <div class="sched-event">Workshop Tour</div>
+          <div class="sched-loc">Europe — TBC</div>
+        </div>
+        <span class="sched-badge workshop">Workshop</span>
+      </div>
+    </div>
+    <div style="margin-top:2rem;" class="rv d2">
+      <button class="btn-pri" onclick="document.querySelector('.contact-cta').scrollIntoView({behavior:'smooth'})">Book for Your Event</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section class="proj-sec">
+  <div class="proj-inner">
+    <div class="proj-hdr rv">
+      <span class="proj-hdr-t">Last Project · Feb 2025 · Pai, Thailand</span>
+      <span class="proj-hdr-t" style="font-style:italic;">@faijai.flowfest</span>
+    </div>
+    <div class="pgr">
+      <div>
+        <h2 class="prh rv">Fai Jai<br/>Flow Festival</h2>
+        <p style="font-size:.95rem;color:var(--mid);line-height:1.75;" class="rv d1">Fire safety coordination and volunteer management for a dedicated backstage fire performance space. Structured safety protocols, zero incidents.</p>
+      </div>
+      <div class="rv d2" style="display:flex;gap:3rem;align-items:flex-start;padding-top:.5rem;">
+        <div><div class="pnr">350</div><div class="pnl">Visitors</div></div>
+        <div><div class="pnr">12</div><div class="pnl">Volunteers</div></div>
+        <div><div class="pnr">0</div><div class="pnl">Incidents</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact-cta">
+  <div class="cta-inner">
+    <div class="rv">
+      <div class="cta-pre">Get in Touch</div>
+      <h2 class="cta-title">Let's work<br/>together</h2>
+      <p class="cta-sub">Performances · Workshops · Festival bookings · Stage design</p>
+    </div>
+    <div class="cta-right rv d2">
+      <a href="mailto:pablotalavera089@gmail.com"><button class="cta-btn">Send an Email</button></a>
+      <a href="https://instagram.com/echo_between" target="_blank"><button class="cta-btn-gh">@echo_between</button></a>
+      <div class="cta-detail"><a href="mailto:pablotalavera089@gmail.com">pablotalavera089@gmail.com</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="cls">
+  <div class="cls-bg"></div>
+  <div class="cls-in">
+    <div class="cls-vl rv"></div>
+    <h2 class="cls-txt rv d1">Look Forward<br/>to Meeting You</h2>
+  </div>
+  <div class="cls-ft">
+    <span class="cls-ft-t" style="font-style:italic;">Artist Portfolio</span>
+    <div class="cls-fl"></div>
+    <span class="cls-ft-t">@echo_between</span>
+  </div>
+</div>
+
+</div><!-- /pg-home -->
+
+<!-- ══════════════ PAGE: WORKSHOPS ══════════════ -->
+<div id="pg-workshops" class="pg">
+  <div class="wsp">
+    <div class="wsh">
+      <div class="wsh-lbl">Teaching &amp; Training</div>
+      <h1 class="wsh-ttl">Workshop<br/>Portfolio</h1>
+      <p class="wsh-sub">Seven practical workshops rooted in 8 years of professional circus, theatre, and movement practice. Click any workshop to see the full curriculum.</p>
+    </div>
+    <div class="wgrid" id="wgrid"></div>
+  </div>
+</div>
+
+<!-- Workshop Modal -->
+<div class="wmo" id="wmo" onclick="cmo(event)">
+  <div class="wm">
+    <div class="wmt"><button class="wmc" onclick="cwm()">✕</button><div class="wm-cat" id="m-cat"></div><div class="wm-ttl" id="m-ttl"></div><div class="wm-sub" id="m-sub"></div></div>
+    <div class="wmb" id="m-body"></div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: PERFORMANCE ══════════════ -->
+<div id="pg-performance" class="pg">
+  <div class="perfp">
+    <div class="perfh">
+      <div class="perfh-lbl">How I Work</div>
+      <h1 class="perfh-ttl">Performance<br/>Setups</h1>
+      <p class="perfh-sub">Technical specifications, requirements, and formats for each type of performance and service Pablo offers.</p>
+    </div>
+    <div class="perf-cards" id="perf-cards"></div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: SHOWREEL ══════════════ -->
+<div id="pg-showreel" class="pg">
+  <div class="reelp">
+    <div class="reelh">
+      <div class="reelh-lbl">Video Work</div>
+      <h1 class="reelh-ttl">Showreel &amp;<br/>Video Archive</h1>
+      <p class="reelh-sub">Paste a YouTube or Vimeo link to add your showreels and performance clips. The first video added becomes the featured reel.</p>
+    </div>
+    <div class="reel-feat">
+      <div class="reel-feat-lbl">Featured Showreel</div>
+      <div class="vembed" id="vfeat">
+        <div class="vembed-ph"><div class="vplay" onclick="promptFeat()">▶</div><p>Click to set your featured video, or paste a link below</p></div>
+      </div>
+    </div>
+    <div class="reel-add">
+      <div class="reel-add-lbl">Add YouTube or Vimeo video</div>
+      <div class="reel-row">
+        <input class="ri" id="vurl" type="text" placeholder="https://www.youtube.com/watch?v=..."/>
+        <input class="ri" id="vtitle" type="text" placeholder="Title (optional)" style="max-width:200px;"/>
+        <button class="radd" onclick="addVid()">+ Add Video</button>
+      </div>
+    </div>
+    <div class="reel-grid-sec">
+      <div class="rgrid-hdr"><span>All Videos</span><span id="vcnt">0 videos</span></div>
+      <div class="rgrid" id="rgrid"><div style="grid-column:1/-1;padding:2.8rem 0;text-align:center;"><p style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(233,228,218,.18);">Add videos above to populate this grid</p></div></div>
+    </div>
+    <div class="reel-ph-sec">
+      <div class="reel-ph-lbl">Performance Archive</div>
+      <div class="reel-ph-row">
+        <div class="ph" style="max-width:185px;opacity:1;transform:none;"><div class="pno"></div><div class="psc"><img src="/mnt/user-data/uploads/5248.jpg" alt="" onerror="this.outerHTML='<div class=pph><div class=pio>🔥</div><div class=plb>Fire</div></div>'"/></div></div>
+        <div class="ph" style="max-width:185px;opacity:1;transform:none;"><div class="pno"></div><div class="psc"><img src="/mnt/user-data/uploads/5249.jpg" alt="" onerror="this.outerHTML='<div class=pph><div class=pio>🎭</div><div class=plb>Theater</div></div>'"/></div></div>
+        <div class="ph" style="max-width:185px;opacity:1;transform:none;"><div class="pno"></div><div class="psc"><img src="/mnt/user-data/uploads/5250.jpg" alt="" onerror="this.outerHTML='<div class=pph><div class=pio>✨</div><div class=plb>Light</div></div>'"/></div></div>
+        <div class="ph" style="max-width:185px;opacity:1;transform:none;"><div class="pno"></div><div class="psc"><img src="/mnt/user-data/uploads/5243.jpg" alt="" onerror="this.outerHTML='<div class=pph><div class=pio>🎪</div><div class=plb>Circus</div></div>'"/></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* CURSOR */
+const C=document.getElementById('cur'),CR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px';});
+(function L(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(L);})();
+function enlargeCursor(){C.style.width='14px';C.style.height='14px';CR.style.width='50px';CR.style.height='50px';}
+function resetCursor(){C.style.width='7px';C.style.height='7px';CR.style.width='34px';CR.style.height='34px';}
+
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>document.getElementById('mnav').classList.toggle('scrolled',scrollY>55));
+
+/* OBSERVERS */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:.1,rootMargin:'0px 0px -35px 0px'});
+const co=new IntersectionObserver(e=>e.forEach(x=>{
+  if(!x.isIntersecting)return;
+  const el=x.target,tgt=parseInt(el.dataset.count),fmt=el.dataset.fmt;
+  let s=null;
+  const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/1500,1),e2=1-Math.pow(1-p,3),v=Math.floor(e2*tgt);
+    el.textContent=fmt==='k'?(v/1000).toFixed(3):fmt==='p'?v+'+':v;
+    if(p<1)requestAnimationFrame(step);else el.textContent=fmt==='k'?(tgt/1000).toFixed(3):fmt==='p'?tgt+'+':tgt;
+  };requestAnimationFrame(step);co.unobserve(el);
+}),{threshold:.5});
+function obs(){
+  document.querySelectorAll('.rv,.rl,.rr,.ph').forEach(el=>io.observe(el));
+  document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+  // Also trigger anything already in viewport
+  setTimeout(()=>{document.querySelectorAll('.rv,.rl,.rr').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight)el.classList.add('in');
+  });},100);
+}
+obs();
+
+/* CURSOR HOVER */
+function attachCursorHovers(){document.querySelectorAll('a,button,.wcard,.pc,.ri-card').forEach(el=>{el.addEventListener('mouseenter',enlargeCursor);el.addEventListener('mouseleave',resetCursor);});}
+attachCursorHovers();
+
+/* PAGE SWITCH */
+function gp(id){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.pb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  const map={home:0,workshops:1,performance:2,showreel:3};
+  document.querySelectorAll('.pb')[map[id]].classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{obs();attachCursorHovers();},120);
+}
+
+/* WORKSHOPS */
+const WS=[
+  {num:'01',title:'Physical Preparation',sub:"The Performer's Body — Strength, Mobility & Readiness",type:'Performance Training',dur:'90 min / Half Day',tags:['All Levels','Morning Slot','Circus','Dance','Theater'],
+   ov:"The foundation workshop every performer needs. Most people train their art — almost none train the body to sustain it. This workshop addresses that gap with a smart, functional physical toolkit built on 8 years of circus and somatic experience.",
+   aud:["Circus and dance students (pre-professional)","Festival warm-up slot","Theater companies and acting schools","Yoga and wellness studios"],
+   obj:["Develop a personal, sustainable warm-up routine","Understand the body's specific demands for circus and theatre","Build functional strength and mobility for performance","Learn injury prevention and body intelligence"],
+   ag:[['0:00–0:30','Arrival & Body Scan',"Breath, self-awareness, sensing the body's current state."],['0:30–1:00','Joint Mobility & Flow','Systematic joint mobility from feet to neck. Animal Flow transitions.'],['1:00–1:30','Functional Strength','Core, shoulder girdle, hip stability — specific demands of circus and physical theatre.'],['1:30–2:00','Flexibility','Active and passive stretching. Partner-assisted work.'],['2:00–2:30','Injury Prevention','How to listen to your body. Common performer injuries and how to avoid them.'],['2:30–3:00','Integration','Somatic floor work. Reflection circle.']],
+   hook:'Most performers train their art. Almost none train their body to sustain it. This changes that.'},
+  {num:'02',title:'Spatial Awareness & The Seven Spaces',sub:'Seven Spatial Layers of Physical Theatre',type:'Physical Theatre',dur:'1 Hour / Half Day',tags:['Physical Theatre','Movement','Stage Composition','All Levels'],
+   ov:'A practical and theoretical exploration of spatial awareness in dance, movement, and physical theatre. Space is not empty — it is an area actively created through movement. This workshop teaches all seven spatial layers simultaneously.',
+   aud:['Performers and dancers at any level','Theater students and acting schools','Circus artists wanting stage composition skills','Movement teachers'],
+   obj:['Understand and apply the seven spatial layers','Develop awareness of self, others, and environment','Improve movement clarity and composition','Strengthen group coordination and perception','Enhance stage presence and performative intention'],
+   ag:[['0:00–0:10','Arrival','Breath. Standing. Sensing the room. Becoming present.'],['0:10–0:20','Inner Space & Kinesphere','Solo exploration of the personal bubble.'],['0:20–0:30','Body Space & Relational Space','Shape-making and duo awareness.'],['0:30–0:40','Group & Stage Space','Full group tasks — formations, pathways, levels.'],['0:40–0:50','Audience Space','Focus, direction, and presence. Being seen vs performing.'],['0:50–1:00','Integration','Short group composition using all seven layers. Reflection.']],
+   hook:"Space isn't empty. Every gap between bodies, every level you move through — it's all language. This workshop teaches you to speak it."},
+  {num:'03',title:'Partner Movement',sub:'Dialogue in Motion — Communication, Weight & Trust',type:'Movement / Corporate',dur:'90 min / Half Day',tags:['All Levels','Corporate','Wellness','No Experience Needed'],
+   ov:'A workshop about learning to move with someone — not just next to them. Weight sharing, counter-balance, momentum, listening through touch. Deeply accessible, deeply human.',
+   aud:['General public and wellness festivals','Corporate teams (team-building)','Theater and dance students','Yoga retreat communities'],
+   obj:['Experience movement as non-verbal dialogue','Develop physical communication and listening','Build trust through shared weight and contact','Explore leading and following without hierarchy'],
+   ag:[['0:00–0:15','Individual Warm-Up','Sensing your own body first.'],['0:15–0:30','First Contact','Back-to-back breathing. Leaning. Mirroring.'],['0:30–0:50','Weight Sharing','Counter-balance, yielding and pushing, contact as conversation.'],['0:50–1:10','Moving Together','Leading and following, traveling through space as a pair.'],['1:10–1:25','Free Exploration','Finding your own duet language.'],['1:25–1:30','Closing Circle','One word. What did you feel?']],
+   hook:"You don't need to know how to dance. You just need to be willing to listen — with your whole body."},
+  {num:'04',title:'Beginner Acrobatics',sub:'Your First Flight — Safe, Playful Entry into Acro',type:'Circus / Movement',dur:'90 min',tags:['Beginners','All Ages','Festival','Youth'],
+   ov:'An entry-level acrobatics workshop that removes fear and builds foundations. Rolls, cartwheels, handstands, basic partner lifts. Maximum 16 participants for safety.',
+   aud:['Complete beginners','Children and youth programs','Festival family slot','Dance students wanting acro vocabulary'],
+   obj:['Learn to fall safely and confidently','Build foundational floor skills: rolls, cartwheels, balance','Experience first inversions and partner weight-sharing','Develop body awareness'],
+   ag:[['0:00–0:15','Safety & Warm-Up','How to fall safely. Basic rules. Body preparation.'],['0:15–0:35','Floor Skills','Rolls (forward, backward, sideways). Cartwheels.'],['0:35–0:55','Balance & Inversions','Headstand prep, wall handstand, frog balance.'],['0:55–1:15','First Partner Work','Simple counter-balance, beginner basing and flying.'],['1:15–1:30','Play & Celebration','Free exploration, group shapes, sharing.']],
+   hook:"You told yourself you couldn't do it. You were wrong. Come prove yourself wrong."},
+  {num:'05',title:'Partner Acrobatics',sub:'Base & Flyer — The Art of Shared Flight',type:'Circus / Physical Theatre',dur:'Half Day / Full Day',tags:['Intermediate','Circus','Dance','Festival Acro'],
+   ov:'L-basing, standing acro, shoulder stands, forward-flying. Technical precision meets artistic framing — acrobatics as physical poetry, not just sport.',
+   aud:['Circus artists cross-training','Dancers wanting to add acro vocabulary','Contact improv practitioners','Physical theatre performers','Festival acro community'],
+   obj:['Master fundamental L-base positions and transitions','Develop standing acro','Learn to flow between shapes with intention','Apply acrobatics as artistic language'],
+   ag:[['0:00–0:30','Warm-Up & Spotting','Wrists, shoulders, hips, core activation.'],['0:30–1:00','L-Base Fundamentals','Foot-to-hip, foot-to-hand, basic flying shapes.'],['1:00–1:30','Standing Acro','Shoulder stand, thigh stand, transitions.'],['1:30–2:00','Flow & Transitions','Linking positions, movement between shapes.'],['2:00–2:30','Artistic Application','Duet phrasing, timing and expression.'],['2:30–3:00','Showing & Feedback','Pairs share a short sequence. Collective reflection.']],
+   hook:"Acrobatics isn't about trust falling. It's about two people becoming one moving thing."},
+  {num:'06',title:'Contact Staff',sub:'Object as Extension — The Body & the Staff as One',type:'Circus / Flow Arts',dur:'90 min / Half Day',tags:['Flow Arts','Circus','Object Work','Festival'],
+   ov:"Pablo's most personal and highest-level offering. Contact staff is a niche discipline with a devoted, growing community in the European festival and flow arts circuit.",
+   aud:['Flow arts and circus festival community','Circus artists adding prop manipulation','Dancers interested in object work','Theater artists exploring visual storytelling'],
+   obj:['Learn grip positions, weight sensing, and basic isolations','Build core vocabulary: rolls, passes, spins','Integrate the staff with the moving body','Develop spatial awareness and performance with a prop'],
+   ag:[['0:00–0:20','Body Prep & Introduction','Grip positions, weight sensing, basic isolations.'],['0:20–0:50','Core Vocabulary','Rolls, passes, spins — foundational moves.'],['0:50–1:20','Body Integration','Moving with the staff, not just spinning it.'],['1:20–1:50','Spatial Awareness','Using space, levels, direction. Staff as stage language.'],['1:50–2:30','Phrase Building','Personal exploration, short phrase creation.'],['2:30–3:00','Showing & Dialogue','Share, watch, give feedback.']],
+   hook:"The staff doesn't move. You move. The staff just reveals it."},
+  {num:'07',title:'Contact Improvisation',sub:'The Moving Conversation — Presence, Touch & Shared Weight',type:'Dance / Somatic / Wellness',dur:'90 min / Multi-Day',tags:['CI Circuit','Dance','Somatic','Wellness'],
+   ov:"Pablo's deepest practice and most marketable offering in Europe right now. This workshop teaches CI from the ground up — safety, touch, gravity, falling, flying — while holding the poetic dimension of a living conversation between bodies.",
+   aud:['CI festival community','Dance and somatic movement practitioners','Theater makers wanting a physical practice','Wellness and yoga communities'],
+   obj:['Understand the principles of contact improvisation','Develop sensitivity to weight, momentum, and shared contact','Learn to fall safely and give/receive weight with trust','Access presence and non-verbal communication'],
+   ag:[['0:00–0:15','Individual Tuning','Solo warm-up, sensing gravity, rolling on the floor.'],['0:15–0:35','Point of Contact','Back-to-back, shoulder-to-shoulder. Discovering the shared point.'],['0:35–0:55','Weight & Momentum','Giving weight, rolling point of contact, basic flow.'],['0:55–1:10','Falling Safely','Spiraling to the floor, being caught, trusting the ground.'],['1:10–1:25','Free Jam','Open exploration with multiple partners.'],['1:25–1:30','Landing','Stillness. One breath together.']],
+   hook:"Contact improvisation is not a dance style. It's a conversation your body has been waiting to have."}
+];
+
+function renderWS(){
+  document.getElementById('wgrid').innerHTML=WS.map((w,i)=>`
+    <div class="wcard rv" style="transition-delay:${(i%3)*.1}s" onclick="owm(${i})">
+      <div class="wnum">${w.num}</div>
+      <div class="wttl">${w.title}</div>
+      <div class="wsub">${w.sub}</div>
+      <div class="wtags">${w.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+renderWS();
+
+function owm(i){
+  const w=WS[i];
+  document.getElementById('m-cat').textContent=`${w.type} · ${w.dur}`;
+  document.getElementById('m-ttl').textContent=w.title;
+  document.getElementById('m-sub').textContent=w.sub;
+  document.getElementById('m-body').innerHTML=`
+    <div class="wms"><div class="wmst">Overview</div><p>${w.ov}</p><div class="wmtags">${w.tags.map(t=>`<span class="tag tag-dk">${t}</span>`).join('')}</div></div>
+    <div class="wms" style="display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;">
+      <div><div class="wmst">Who It's For</div><ul>${w.aud.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+      <div><div class="wmst">Objectives</div><ul>${w.obj.map(o=>`<li>${o}</li>`).join('')}</ul></div>
+    </div>
+    <div class="wms"><div class="wmst">Agenda</div><table class="wat"><tr><th>Time</th><th>Block</th><th>Content</th></tr>${w.ag.map(a=>`<tr><td>${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td></tr>`).join('')}</table></div>
+    <div class="wms"><div class="wmst">Social Hook</div><div class="wmhook"><p>"${w.hook}"</p></div></div>`;
+  document.getElementById('wmo').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function cwm(){document.getElementById('wmo').classList.remove('open');document.body.style.overflow='';}
+function cmo(e){if(e.target===document.getElementById('wmo'))cwm();}
+
+/* PERFORMANCE SETUPS */
+const PS=[
+  {ico:'🔥',title:'Fire Performance',type:'Outdoor / Festival',wide:false,
+   desc:'Solo or group fire performance combining contact staff, fire juggling, and fire dance. Full fire safety concept included.',
+   specs:[['Duration','15–45 min'],['Space','Min. 8×8m + safety perimeter'],['Setup','45 min (safety check, fuel prep, damp-down crew)'],['Crew','1–3 performers + 2 fire safety officers'],['Equipment','Fire staffs, poi, torches, blankets, extinguishers'],['Conditions','Outdoor only; wind assessment required']],
+   tags:['Fire Staff','Juggling','Night Show','Festival','Outdoor']},
+  {ico:'🎭',title:'Immersive Theatre Act',type:'Stage / Indoor / Outdoor',wide:false,
+   desc:'Physical theatre combining acting, movement, contact improvisation, and spatial design. Site-specific or stage-based. Solo, duet, or ensemble.',
+   specs:[['Duration','20–60 min (or ongoing ambient)'],['Space','Flexible — adapts to any environment'],['Setup','1–2 hours (staging, lighting)'],['Performers','1–6 (depending on concept)'],['Tech','Sound system optional; lighting preferred'],['Format','Fixed show or interactive/roaming installation']],
+   tags:['Physical Theatre','Contact Improv','Site-Specific','Indoor','Outdoor']},
+  {ico:'🤸',title:'Acrobatic Duo / Group Act',type:'Stage / Festival',wide:false,
+   desc:'Partner acrobatics and floor-based circus combining L-basing, standing acro, and choreographed contact movement.',
+   specs:[['Duration','10–25 min'],['Space','Min. 6×6m with crash mat or soft floor'],['Setup','30 min warm-up + safety check'],['Crew','2–4 performers'],['Equipment','Crash mats (provided or required on site)'],['Level','Professional; audience-safe staging']],
+   tags:['Acrobatics','Partner Work','Stage','Corporate']},
+  {ico:'🪄',title:'Contact Staff Solo',type:'Stage / Festival / Street',wide:false,
+   desc:"Pablo's signature discipline. A meditative, high-skill contact staff performance that blurs the line between juggling, dance, and sculpture.",
+   specs:[['Duration','10–30 min'],['Space','Min. 4×4m clear space'],['Setup','15 min'],['Crew','Solo'],['Equipment','Contact staffs (wooden, carbon, or LED)'],['Format','Fixed set or continuous roaming walkabout']],
+   tags:['Contact Staff','Solo','Street','Stage','Walkabout']},
+  {ico:'🏗️',title:'Festival Stage & Space Design',type:'Event / Festival Architecture',wide:true,
+   desc:'Full-service stage and immersive space design for festivals and events. Yurt construction, light installations, full stage builds — artistic vision and technical hands-on skill combined.',
+   specs:[['Services','Stage construction, yurt building, set design, light & shadow installations, fire safety zone planning'],['Scale','Small wellness spaces to large festival main stages'],['Experience','20+ festivals across Europe'],['Deliverables','Concept design, technical rider, on-site build, teardown'],['Collaboration','Works with event teams, other artists, technical crews'],['Timeline','Available for multi-day builds and residencies']],
+   tags:['Stage Design','Festival','Architecture','Light Installation','Fire Safety','Yurt Build']}
+];
+function renderPS(){
+  document.getElementById('perf-cards').innerHTML=PS.map(s=>`
+    <div class="pc${s.wide?' wide':''} rv">
+      <div class="pc-hd"><div class="pc-ico">${s.ico}</div><div class="pc-ttl">${s.title}</div><div class="pc-type">${s.type}</div></div>
+      <div class="pc-bd">
+        <p>${s.desc}</p>
+        <div class="pc-specs">${s.specs.map(r=>`<div class="pc-row"><div class="pc-key">${r[0]}</div><div class="pc-val">${r[1]}</div></div>`).join('')}</div>
+        <div class="pc-tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+renderPS();
+
+/* VIDEO REEL */
+let vids=[];
+function parseURL(url){
+  const yt=url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if(yt)return{embed:`https://www.youtube.com/embed/${yt[1]}?rel=0`,thumb:`https://img.youtube.com/vi/${yt[1]}/mqdefault.jpg`,type:'YouTube',id:yt[1]};
+  const vi=url.match(/vimeo\.com\/(\d+)/);
+  if(vi)return{embed:`https://player.vimeo.com/video/${vi[1]}`,thumb:null,type:'Vimeo',id:vi[1]};
+  return null;
+}
+function setFeat(url){document.getElementById('vfeat').innerHTML=`<iframe src="${url}" allowfullscreen allow="autoplay;fullscreen;picture-in-picture"></iframe>`;}
+function promptFeat(){const u=prompt('Paste your YouTube or Vimeo URL:');if(!u)return;const p=parseURL(u.trim());if(p)setFeat(p.embed);else alert('Could not parse that URL.');}
+function addVid(){
+  const url=document.getElementById('vurl').value.trim();
+  const title=document.getElementById('vtitle').value.trim()||'Untitled Video';
+  if(!url)return;
+  const p=parseURL(url);
+  if(!p){alert('Please use a YouTube or Vimeo link.');return;}
+  vids.push({...p,title});
+  document.getElementById('vurl').value='';
+  document.getElementById('vtitle').value='';
+  if(vids.length===1)setFeat(p.embed);
+  renderReel();
+}
+function delVid(i){vids.splice(i,1);renderReel();}
+function renderReel(){
+  const g=document.getElementById('rgrid');
+  document.getElementById('vcnt').textContent=vids.length+(vids.length===1?' video':' videos');
+  if(!vids.length){g.innerHTML='<div style="grid-column:1/-1;padding:2.8rem 0;text-align:center;"><p style="font-family:\'DM Mono\',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(233,228,218,.18);">Add videos above to populate this grid</p></div>';return;}
+  g.innerHTML=vids.map((v,i)=>`
+    <div class="ri-card" onclick="playVid(${i})">
+      <div class="ri-thumb">${v.thumb?`<img src="${v.thumb}" alt="${v.title}"/>`:'<div class="ri-thumb-ph"><span>▶</span></div>'}</div>
+      <div class="ri-info"><div class="ri-ttl">${v.title}</div><div class="ri-meta">${v.type} · click to play</div></div>
+      <button class="ri-del" onclick="event.stopPropagation();delVid(${i})">✕</button>
+    </div>`).join('');
+}
+function playVid(i){setFeat(vids[i].embed);document.querySelector('.reel-feat').scrollIntoView({behavior:'smooth'});}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cwm();});
+</script>
+</body>
+</html>

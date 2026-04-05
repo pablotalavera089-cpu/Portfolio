@@ -1806,9 +1806,11 @@ updateAdminGalleryList();
 // LINKTREE
 const links = [
     { ico: 'fab fa-youtube', title: 'YouTube Channel', desc: 'Showreels & Projects', url: 'https://m.youtube.com/@echo_between' },
+    { ico: 'fab fa-instagram', title: 'Instagram', desc: 'Updates & Reels', url: 'https://www.instagram.com/echo_between?igsh=MTJpNnRqb3FqYXIwcQ==' },
     { ico: 'fab fa-tiktok', title: 'TikTok Videos', desc: '@echo_between', url: 'https://www.tiktok.com/@echo_between' },
     { ico: 'fas fa-palette', title: 'Design Portfolio', desc: 'Canva Showreels', url: 'https://www.canva.com/design/DAGf6uP86xM/33xWR0gQr4wwYKmltd0LtQ/edit' },
     { ico: 'fas fa-heart', title: 'Support My Work', desc: 'Ko-fi Tips & Donations', url: 'https://ko-fi.com/echo_between' }
+    
 ];
 
 function renderLinktree() { document.getElementById('linktree-grid').innerHTML = links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer" style="color:inherit;"><div class="link-card" role="listitem"><div class="link-ico" aria-hidden="true"><i class="${l.ico}"></i></div><div class="link-content"><h3>${l.title}</h3><p>${l.desc}</p></div><i class="fas fa-arrow-right link-arrow" aria-hidden="true"></i></div></a>`).join(''); }

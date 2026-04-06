@@ -159,7 +159,7 @@
             color: var(--cream);
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 501;
+            z-index: 601;
             padding: .5rem;
             width: 44px;
             height: 44px;
@@ -176,7 +176,7 @@
             background: rgba(8, 7, 6, .99);
             backdrop-filter: blur(20px);
             border-left: 1px solid rgba(233, 228, 218, .1);
-            z-index: 490;
+            z-index: 600;
             transition: right .35s cubic-bezier(.16, 1, .3, 1);
             overflow-y: auto;
             padding-top: 5rem;
@@ -705,6 +705,7 @@
             margin-bottom: 1rem;
         }
 
+        .testimonials-header p {
             font-size: .95rem;
             color: rgba(233,228,218,.65);
             max-width: 500px;
@@ -727,12 +728,12 @@
             transition: transform .5s cubic-bezier(.16,1,.3,1);
         }
 
-        .testimonial-card {
         .carousel-item {
             min-width: 100%;
             padding: 0;
         }
 
+        .testimonial-card {
             display: flex;
             flex-direction: column;
         }
@@ -1655,21 +1656,20 @@
             <li><a href="#" onclick="gp('home');return false;"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
             <li><a href="#" onclick="gp('workshops');return false;"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Workshops</a></li>
             <li><a href="#" onclick="gp('performance');return false;"><i class="fas fa-theater-masks" aria-hidden="true"></i> Performances</a></li>
-            <li><a href="#" onclick="gp('gallery');return false;"><i class="fas fa-images" aria-hidden="true"></i> Gallery</a>
-            <li><a  href="#" onclick="gp('linktree');return false;"><i class="fas fa-link" aria-hidden="true"></i> Links</a>
-    </ul>
+            <li><a href="#" onclick="gp('gallery');return false;"><i class="fas fa-images" aria-hidden="true"></i> Gallery</a></li>
+            <li><a href="#" onclick="gp('linktree');return false;"><i class="fas fa-link" aria-hidden="true"></i> Links</a></li>
+        </ul>
     </nav>
 
+    <div class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <button class="mobile-close" onclick="closeMobileMenu()" aria-label="Close navigation menu"><i class="fas fa-times" aria-hidden="true"></i></button>
+        <a href="#" onclick="gp('home');return false;"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#" onclick="gp('workshops');return false;"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Workshops</a>
+        <a href="#" onclick="gp('performance');return false;"><i class="fas fa-theater-masks" aria-hidden="true"></i> Performances</a>
+        <a href="#" onclick="gp('gallery');return false;"><i class="fas fa-images" aria-hidden="true"></i> Gallery</a>
+        <a href="#" onclick="gp('linktree');return false;"><i class="fas fa-link" aria-hidden="true"></i> Links</a>
+    </div>
 
-
-
-
-
-
-
-
-
-    
     <main id="main">
         <!-- HOME PAGE -->
         <div id="pg-home" class="pg on" role="region" aria-label="Home page">
@@ -1922,25 +1922,60 @@ document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; C.
 requestAnimationFrame(function L() { rx += (mx - rx) * .11; ry += (my - ry) * .11; CR.style.left = rx + 'px'; CR.style.top = ry + 'px'; requestAnimationFrame(L); });
 
 // MOBILE MENU
-function toggleMobileMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
-function closeMobileMenu() { document.getElementById('mobileNav').classList.remove('open'); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMobileMenu(); closeAdmin(); cwm(); } });
+function toggleMobileMenu() {
+    const nav = document.getElementById('mobileNav');
+    if (nav) nav.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+    const nav = document.getElementById('mobileNav');
+    if (nav) nav.classList.remove('open');
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeMobileMenu();
+        closeAdmin();
+        cwm();
+    }
+});
 
 window.addEventListener('scroll', () => document.getElementById('mnav').classList.toggle('scrolled', scrollY > 55));
 
-const io = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: .1, rootMargin: '0px 0px -50px 0px' });
-function obs() { document.querySelectorAll('.rv').forEach(el => io.observe(el)); }
+const io = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('in');
+}), { threshold: .1, rootMargin: '0px 0px -50px 0px' });
+
+function obs() {
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+    document.querySelectorAll('.pg.on .rv').forEach(el => el.classList.add('in'));
+}
 obs();
 
 function gp(id) {
+    const page = document.getElementById('pg-' + id);
+    if (!page) return;
+
     document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
-    document.querySelectorAll('.pb').forEach(b => { b.classList.remove('on'); b.setAttribute('aria-selected', 'false'); });
-    document.getElementById('pg-' + id)?.classList.add('on');
+    document.querySelectorAll('.pb').forEach(b => {
+        b.classList.remove('on');
+        b.setAttribute('aria-selected', 'false');
+    });
+
+    page.classList.add('on');
     const map = { home: 0, workshops: 1, performance: 2, gallery: 3, linktree: 4 };
-    if (map[id] !== undefined) { document.querySelectorAll('.pb')[map[id]]?.classList.add('on'); document.querySelectorAll('.pb')[map[id]]?.setAttribute('aria-selected', 'true'); }
+    if (map[id] !== undefined) {
+        document.querySelectorAll('.pb')[map[id]]?.classList.add('on');
+        document.querySelectorAll('.pb')[map[id]]?.setAttribute('aria-selected', 'true');
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
     closeMobileMenu();
-    setTimeout(() => { obs(); }, 120);
+
+    setTimeout(() => {
+        document.querySelectorAll('.pg.on .rv').forEach(el => el.classList.add('in'));
+        obs();
+    }, 80);
 }
 
 // WORKSHOPS DATA
@@ -1971,26 +2006,141 @@ const PS = [
 function renderPS() { document.getElementById('perf-cards').innerHTML = PS.map(s => `<div class="pc rv" role="listitem"><div class="pc-ico" aria-hidden="true"><i class="${s.ico}"></i></div><div class="pc-ttl">${s.title}</div><div class="pc-type">${s.type}</div><div class="pc-bd"><p>${s.desc}</p><div class="pc-specs">${s.specs.map(r => `<div class="pc-row"><div class="pc-key">${r[0]}</div><div class="pc-val">${r[1]}</div></div>`).join('')}</div></div></div>`).join(''); }
 renderPS();
 
-// GALLERY
-let gallery = JSON.parse(localStorage.getItem('portfolio_gallery')) || [
+// PERSISTENT DATA
+const STORAGE_KEYS = {
+    gallery: 'portfolio_gallery',
+    schedule: 'portfolio_schedule'
+};
+
+const DEFAULT_GALLERY = [
     { url: 'https://res.cloudinary.com/dol2caucl/image/upload/v1775277974/20260212-fof-008_pwnhod.jpg', label: 'Gallery Image 1' },
-    { url: 'https://res.cloudinary.com/dol2caucl/image/upload/v1775277891/20260210-fof-030-2_agzdiu.jpg', label: 'Gallery Image 2' },
+    { url: 'https://res.cloudinary.com/dol2caucl/image/upload/v1775277891/20260210-fof-030-2_agzdiu.jpg', label: 'Gallery Image 2' }
 ];
 
-function renderGallery() { document.getElementById('gallery-grid').innerHTML = gallery.map((img, i) => `<div class="gallery-item" onclick="updateAboutImage('${img.url}')" role="listitem" tabindex="0"><img src="${img.url}" alt="${img.label}" loading="lazy"/><div class="gallery-label">${img.label}</div><button class="gallery-del" onclick="event.stopPropagation();delGalleryImage(${i})" aria-label="Delete image"><i class="fas fa-trash" aria-hidden="true"></i></button></div>`).join(''); }
+const DEFAULT_SCHEDULE = [
+    { day: '03', month: 'Feb 2025', event: 'Fai Jai Flow Festival', location: 'Pai, Thailand', badgeIcon: 'fas fa-fire', badgeText: 'Fire', past: true },
+    { day: '—', month: 'Spring 25', event: 'Europe Festival coming soon', location: 'Europe — TBC', badgeIcon: 'fas fa-star', badgeText: 'Performance', past: false }
+];
 
-function addCloudinaryImage() { const url = document.getElementById('cloudinary-url').value.trim(); if (!url) return alert('Enter a Cloudinary URL'); if (!url.includes('cloudinary')) return alert('Please enter a valid Cloudinary URL'); const label = prompt('Image Label:', 'Performance Photo'); if (!label) return; gallery.unshift({ url, label }); localStorage.setItem('portfolio_gallery', JSON.stringify(gallery)); renderGallery(); updateAdminGalleryList(); document.getElementById('cloudinary-url').value = ''; document.getElementById('cloudinary-status').innerHTML = '<span style="color:var(--gold);">✓ Image added successfully!</span>'; setTimeout(() => document.getElementById('cloudinary-status').innerHTML = '', 3000); }
+function readStoredArray(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback.slice();
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : fallback.slice();
+    } catch (err) {
+        return fallback.slice();
+    }
+}
 
-function triggerCloudinary() { alert('Install Cloudinary Upload Widget from admin config. See setup guide below.'); }
+function writeStoredArray(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (err) {
+        console.warn('Could not save data to localStorage', err);
+    }
+}
 
-function addGalleryImage() { const url = document.getElementById('img-url').value.trim(), label = document.getElementById('img-label').value.trim() || 'Photo'; if (!url) return alert('Enter image URL'); gallery.push({ url, label }); localStorage.setItem('portfolio_gallery', JSON.stringify(gallery)); renderGallery(); updateAdminGalleryList(); document.getElementById('img-url').value = ''; document.getElementById('img-label').value = ''; }
+let gallery = readStoredArray(STORAGE_KEYS.gallery, DEFAULT_GALLERY);
+let schedule = readStoredArray(STORAGE_KEYS.schedule, DEFAULT_SCHEDULE);
 
-function delGalleryImage(i) { gallery.splice(i, 1); localStorage.setItem('portfolio_gallery', JSON.stringify(gallery)); renderGallery(); updateAdminGalleryList(); }
+function renderSchedule() {
+    const list = document.getElementById('sched-list');
+    if (!list) return;
 
-function updateAboutImage(url) { document.getElementById('about-img').src = url; }
+    list.innerHTML = schedule.map(item => `
+        <div class="sched-row ${item.past ? 'past' : 'upcoming'}">
+            <div>
+                <div class="sched-day">${item.day}</div>
+                <div class="sched-month">${item.month}</div>
+            </div>
+            <div>
+                <div class="sched-event">${item.event}</div>
+                <div class="sched-loc"><i class="fas fa-map-marker" aria-hidden="true"></i> ${item.location}</div>
+            </div>
+            <span class="sched-badge"><i class="${item.badgeIcon || 'fas fa-star'}" aria-hidden="true"></i> ${item.badgeText || 'Event'}</span>
+        </div>`).join('');
+}
 
-function updateAdminGalleryList() { document.getElementById('admin-gallery-list').innerHTML = '<strong>Current Images (' + gallery.length + '):</strong><div style="margin-top:.6rem;">' + gallery.map((img, i) => `<div style="padding:.5rem;background:rgba(0,0,0,.08);border-radius:6px;margin-bottom:.4rem;display:flex;justify-content:space-between;align-items:center;"><span>${img.label}</span><button onclick="delGalleryImage(${i})" style="background:none;border:none;color:#8c7060;cursor:pointer;font-size:.8rem;"><i class="fas fa-trash-alt"></i></button></div>`).join('') + '</div>'; }
+function renderGallery() {
+    const grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+    grid.innerHTML = gallery.map((img, i) => `
+        <div class="gallery-item" onclick="updateAboutImage('${img.url}')" role="listitem" tabindex="0">
+            <img src="${img.url}" alt="${img.label}" loading="lazy"/>
+            <div class="gallery-label">${img.label}</div>
+            <button class="gallery-del" onclick="event.stopPropagation();delGalleryImage(${i})" aria-label="Delete image"><i class="fas fa-trash" aria-hidden="true"></i></button>
+        </div>`).join('');
+}
 
+function addCloudinaryImage() {
+    const urlInput = document.getElementById('cloudinary-url');
+    const url = urlInput?.value.trim();
+    if (!url) return alert('Enter a Cloudinary URL');
+    if (!url.includes('cloudinary')) return alert('Please enter a valid Cloudinary URL');
+    const label = prompt('Image Label:', 'Performance Photo');
+    if (!label) return;
+
+    gallery.unshift({ url, label });
+    writeStoredArray(STORAGE_KEYS.gallery, gallery);
+    renderGallery();
+    updateAdminGalleryList();
+
+    if (urlInput) urlInput.value = '';
+    const status = document.getElementById('cloudinary-status');
+    if (status) {
+        status.innerHTML = '<span style="color:var(--gold);">✓ Image added successfully!</span>';
+        setTimeout(() => { status.innerHTML = ''; }, 3000);
+    }
+}
+
+function triggerCloudinary() {
+    const input = document.getElementById('cloudinary-url');
+    if (input) input.focus();
+    alert('Paste a Cloudinary image URL below, then click Add Image.');
+}
+
+function addGalleryImage() {
+    const urlInput = document.getElementById('img-url');
+    const labelInput = document.getElementById('img-label');
+    const url = urlInput?.value.trim();
+    const label = labelInput?.value.trim() || 'Photo';
+    if (!url) return alert('Enter image URL');
+
+    gallery.push({ url, label });
+    writeStoredArray(STORAGE_KEYS.gallery, gallery);
+    renderGallery();
+    updateAdminGalleryList();
+
+    if (urlInput) urlInput.value = '';
+    if (labelInput) labelInput.value = '';
+}
+
+function delGalleryImage(i) {
+    gallery.splice(i, 1);
+    writeStoredArray(STORAGE_KEYS.gallery, gallery);
+    renderGallery();
+    updateAdminGalleryList();
+}
+
+function updateAboutImage(url) {
+    const aboutImg = document.getElementById('about-img');
+    if (aboutImg) aboutImg.src = url;
+}
+
+function updateAdminGalleryList() {
+    const list = document.getElementById('admin-gallery-list');
+    if (!list) return;
+
+    list.innerHTML = '<strong>Current Images (' + gallery.length + '):</strong><div style="margin-top:.6rem;">' +
+        gallery.map((img, i) => `
+            <div style="padding:.5rem;background:rgba(0,0,0,.08);border-radius:6px;margin-bottom:.4rem;display:flex;justify-content:space-between;align-items:center;">
+                <span>${img.label}</span>
+                <button onclick="delGalleryImage(${i})" style="background:none;border:none;color:#8c7060;cursor:pointer;font-size:.8rem;"><i class="fas fa-trash-alt"></i></button>
+            </div>`).join('') + '</div>';
+}
+
+renderSchedule();
 renderGallery();
 updateAdminGalleryList();
 
@@ -2013,11 +2163,84 @@ function toggleAdmin() { if (!password()) return; document.getElementById('admin
 function closeAdmin() { document.getElementById('admin-modal').classList.remove('open'); }
 function password() { return prompt('Admin Password:') === atob('UGFibG8tQWRtaW4tMjAyNQ=='); }
 
-function addEvent() { if (!password()) return; const day = document.getElementById('evt-day').value, month = document.getElementById('evt-month').value, name = document.getElementById('evt-name').value, loc = document.getElementById('evt-location').value; if (!day || !month || !name || !loc) return alert('Fill all fields'); const html = `<div class="sched-row upcoming"><div><div class="sched-day">${day}</div><div class="sched-month">${month}</div></div><div><div class="sched-event">${name}</div><div class="sched-loc"><i class="fas fa-map-marker" aria-hidden="true"></i> ${loc}</div></div><span class="sched-badge"><i class="fas fa-star" aria-hidden="true"></i> Event</span></div>`; document.getElementById('sched-list').innerHTML += html; ['evt-day', 'evt-month', 'evt-name', 'evt-location'].forEach(id => document.getElementById(id).value = ''); }
+function addEvent() {
+    if (!password()) return;
 
-function exportData() { const data = { gallery, timestamp: new Date().toISOString() }; const blob = new Blob([JSON.stringify(data)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'portfolio-' + Date.now() + '.json'; a.click(); URL.revokeObjectURL(url); }
+    const day = document.getElementById('evt-day')?.value.trim();
+    const month = document.getElementById('evt-month')?.value.trim();
+    const name = document.getElementById('evt-name')?.value.trim();
+    const loc = document.getElementById('evt-location')?.value.trim();
 
-function importData() { const input = document.createElement('input'); input.type = 'file'; input.accept = '.json'; input.addEventListener('change', e => { const file = e.target.files[0]; const reader = new FileReader(); reader.onload = ev => { try { const data = JSON.parse(ev.target.result); gallery = data.gallery || []; localStorage.setItem('portfolio_gallery', JSON.stringify(gallery)); renderGallery(); updateAdminGalleryList(); alert('✓ Imported successfully!'); } catch (err) { alert('❌ Error importing file'); } }; reader.readAsText(file); }); input.click(); }
+    if (!day || !month || !name || !loc) return alert('Fill all fields');
+
+    schedule.push({
+        day,
+        month,
+        event: name,
+        location: loc,
+        badgeIcon: 'fas fa-star',
+        badgeText: 'Event',
+        past: false
+    });
+
+    writeStoredArray(STORAGE_KEYS.schedule, schedule);
+    renderSchedule();
+
+    ['evt-day', 'evt-month', 'evt-name', 'evt-location'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+}
+
+
+function exportData() {
+    const data = {
+        gallery,
+        schedule,
+        timestamp: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'portfolio-' + Date.now() + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function importData() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.addEventListener('change', e => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = ev => {
+            try {
+                const data = JSON.parse(ev.target.result);
+
+                if (Array.isArray(data.gallery)) {
+                    gallery = data.gallery;
+                    writeStoredArray(STORAGE_KEYS.gallery, gallery);
+                    renderGallery();
+                    updateAdminGalleryList();
+                }
+
+                if (Array.isArray(data.schedule)) {
+                    schedule = data.schedule;
+                    writeStoredArray(STORAGE_KEYS.schedule, schedule);
+                    renderSchedule();
+                }
+
+                alert('✓ Imported successfully!');
+            } catch (err) {
+                alert('❌ Error importing file');
+            }
+        };
+        reader.readAsText(file);
+    });
+    input.click();
+}
     </script>
 </body>
 </html>

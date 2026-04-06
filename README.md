@@ -2,67 +2,26 @@
 
 Personal portfolio website for Pablo Talavera, multidisciplinary performance artist.
 
-**Live site:** `https://[your-username].github.io/pablo-portfolio`
+## What works
 
-## Features
+- Single-page portfolio with sections for workshops, performances, gallery, links, and testimonials
+- Floating navigation and scroll animations
+- Admin panel for adding schedule entries and gallery images
+- Gallery persistence via `localStorage`
+- Schedule persistence via `localStorage`
+- Export/import for gallery + schedule backup
 
-- Single-page application with four sections: Portfolio · Workshops · Performances · Showreel
-- Floating pill navigation
-- Scroll-triggered animations
-- Live schedule section
-- Embeddable YouTube / Vimeo showreel
-- Fully responsive
-- Zero dependencies — pure HTML, CSS, JavaScript
+## Important note
 
-## Project Structure
+This is a static GitHub Pages site. Admin changes save in the visitor’s browser using `localStorage`.
+That means edits will survive refreshes on the same device/browser, but they do not update the GitHub repository for everyone.
+To make edits visible for all visitors, you need a backend or CMS connected to the page.
 
-```
-pablo-portfolio/
-├── index.html              ← Main entry point
-├── assets/
-│   ├── css/
-│   │   └── style.css       ← All styles
-│   ├── js/
-│   │   └── main.js         ← All JavaScript
-│   └── images/             ← Place your photos here
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      ← Auto-deploy to GitHub Pages
-└── README.md
-```
+## Deployment
 
-## Updating Your Schedule
-
-Open `assets/js/main.js` and find the `SCHEDULE` array near the top. Add, remove or change events:
-
-```js
-const SCHEDULE = [
-  {
-    day: '03', month: 'Feb 2025',
-    event: 'Fai Jai Flow Festival',
-    location: 'Pai, Thailand',
-    type: 'fire', label: 'Fire Safety',
-    past: true
-  },
-  // Add more events here ...
-];
-```
-
-## Deployment (GitHub Pages)
-
-1. Push this repository to GitHub
-2. Go to **Settings → Pages**
-3. Set source: **Deploy from branch → main → / (root)**
-4. Your site goes live at `https://[username].github.io/[repo-name]`
-
-The included GitHub Actions workflow (`.github/workflows/deploy.yml`) also auto-deploys on every push to `main`.
-
-## Adding Images
-
-Place your photos in `assets/images/` and reference them in `index.html`:
-```html
-<img src="assets/images/your-photo.jpg" alt="Description"/>
-```
+1. Upload the folder to GitHub.
+2. In GitHub, go to **Settings → Pages**.
+3. Set source to **Deploy from branch → main → / (root)**.
 
 ## Contact
 

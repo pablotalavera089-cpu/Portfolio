@@ -1430,6 +1430,199 @@
             opacity: 1;
         }
 
+
+        /* MEDIA HUB */
+        .media-hub {
+            display: grid;
+            gap: 1.5rem;
+            margin: 1.6rem 0 2.2rem;
+        }
+        .media-block {
+            background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+            border: 1px solid rgba(184,151,90,.14);
+            border-radius: 22px;
+            padding: 1.2rem;
+            box-shadow: 0 18px 50px rgba(0,0,0,.18);
+        }
+        .media-block-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .media-block-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.55rem, 4vw, 2.3rem);
+            color: var(--cream);
+            margin: 0;
+        }
+        .media-block-sub {
+            color: var(--mid);
+            margin: .35rem 0 0;
+            max-width: 62ch;
+            line-height: 1.6;
+        }
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: .9rem;
+        }
+        .download-card, .reel-card, .slide-card {
+            background: rgba(0,0,0,.14);
+            border: 1px solid rgba(184,151,90,.16);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .download-card {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+            min-height: 120px;
+        }
+        .download-top {
+            display: flex;
+            align-items: flex-start;
+            gap: .8rem;
+        }
+        .download-ico {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: rgba(184,151,90,.12);
+            color: var(--gold);
+            flex: 0 0 auto;
+        }
+        .download-title {
+            font-weight: 700;
+            color: var(--cream);
+            margin: 0;
+        }
+        .download-meta {
+            color: var(--mid);
+            font-size: .92rem;
+            margin-top: .25rem;
+        }
+        .download-actions {
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .72rem 1rem;
+            border-radius: 999px;
+            background: var(--gold);
+            color: var(--ink);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .download-btn:hover { filter: brightness(1.05); }
+        .mini-link {
+            color: var(--cream);
+            opacity: .85;
+            font-size: .9rem;
+            text-decoration: underline;
+        }
+        .slideshow-wrap {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: .8rem;
+            align-items: center;
+        }
+        .slide-frame {
+            position: relative;
+            min-height: 360px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(0,0,0,.16);
+            border: 1px solid rgba(184,151,90,.16);
+        }
+        .slide-frame img {
+            width: 100%;
+            height: 100%;
+            min-height: 360px;
+            object-fit: cover;
+            display: block;
+        }
+        .slide-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1rem 1.1rem;
+            background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.82));
+            color: var(--cream);
+            font-weight: 600;
+        }
+        .slide-empty {
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--mid);
+        }
+        .slide-nav {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background: rgba(184,151,90,.14);
+            color: var(--cream);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 10px 24px rgba(0,0,0,.18);
+        }
+        .slide-nav:hover { background: rgba(184,151,90,.22); }
+        .reel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .reel-card {
+            padding: 0;
+        }
+        .reel-frame {
+            aspect-ratio: 9 / 16;
+            width: 100%;
+            border: 0;
+            display: block;
+            background: #000;
+        }
+        .reel-info {
+            padding: .9rem 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            gap: .8rem;
+            align-items: flex-start;
+        }
+        .reel-name {
+            margin: 0;
+            color: var(--cream);
+            font-weight: 700;
+        }
+        .reel-source {
+            color: var(--mid);
+            font-size: .9rem;
+            margin-top: .25rem;
+        }
+        .media-empty {
+            color: var(--mid);
+            background: rgba(0,0,0,.12);
+            border: 1px dashed rgba(184,151,90,.22);
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
         /* ADMIN PANEL FIX */
         .admin-panel {
             position: fixed;
@@ -1585,6 +1778,7 @@
             .about-inner { grid-template-columns: 1fr; }
             .cta-inner { grid-template-columns: 1fr; }
             .cta-right { align-items: flex-start; }
+            .contact-page-inner { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 820px) {
@@ -1613,6 +1807,7 @@
             .about-inner { gap: 1.5rem; }
             .wsh { padding: 0 1rem; }
             .perfh { padding: 0 1rem; }
+            .contact-form-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
@@ -1644,7 +1839,455 @@
 
             .mobile-nav { width: 85vw; }
         }
+
+        /* WORKSHOP ENHANCEMENTS */
+        .wcard {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .wcard-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .wmeta {
+            display: flex;
+            gap: .4rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .wdesc {
+            color: rgba(233, 228, 218, .68);
+            line-height: 1.7;
+            font-size: .95rem;
+        }
+        .wsection {
+            border-top: 1px solid rgba(233, 228, 218, .08);
+            padding-top: .9rem;
+        }
+        .wsect-title {
+            font-family: 'DM Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .55rem;
+        }
+        .wsection ul {
+            list-style: none;
+            display: grid;
+            gap: .35rem;
+        }
+        .wsection li {
+            color: rgba(233, 228, 218, .65);
+            font-size: .92rem;
+            line-height: 1.6;
+        }
+        .wmore {
+            align-self: flex-start;
+            font-family: 'DM Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(233, 228, 218, .18);
+            border-radius: 999px;
+            padding: .65rem 1rem;
+        }
+        .wmore:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* MEDIA PAGE */
+        .media-page-sec {
+            background: var(--black);
+            padding: 4.5rem 5vw;
+        }
+
+        .contact-page {
+            background: var(--black);
+            padding: 5rem 5vw;
+        }
+
+        .contact-page-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .contact-copy {
+            padding: 1rem 0;
+        }
+
+        .contact-note {
+            margin-top: 1rem;
+            color: rgba(233, 228, 218, .62);
+            line-height: 1.8;
+            max-width: 52ch;
+        }
+
+        .contact-mini-links {
+            display: flex;
+            gap: .8rem;
+            flex-wrap: wrap;
+            margin-top: 1.6rem;
+        }
+
+        .contact-mini-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            border: 1px solid rgba(233, 228, 218, .16);
+            border-radius: 999px;
+            padding: .7rem 1rem;
+            color: var(--cream);
+            font-family: 'DM Mono', monospace;
+            font-size: .62rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .contact-mini-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .contact-form {
+            background: rgba(233, 228, 218, .03);
+            border: 1px solid rgba(184, 151, 90, .14);
+            border-radius: 22px;
+            padding: 1.5rem;
+            box-shadow: 0 18px 50px rgba(0,0,0,.18);
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: .9rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(233, 228, 218, .12);
+            background: rgba(0,0,0,.25);
+            color: var(--cream);
+            padding: .95rem 1rem;
+            font-family: inherit;
+            font-size: .98rem;
+        }
+
+        .contact-form textarea {
+            min-height: 180px;
+            resize: vertical;
+            margin-top: .9rem;
+        }
+
+        .contact-submit {
+            margin-top: 1rem;
+        }
+
+        .contact-form-help {
+            margin-top: .85rem;
+            color: rgba(233, 228, 218, .5);
+            font-size: .85rem;
+            line-height: 1.6;
+        }
+
+        .admin-tab[data-tab="workshops"] { }
+
     </style>
+
+<style id="admin-upgrade-styles">
+  #admin-modal { display: none !important; }
+  .admin-panel { z-index: 1200; }
+  #admin-root {
+    position: fixed;
+    inset: 0;
+    z-index: 1300;
+    pointer-events: none;
+    font-family: 'Inter', sans-serif;
+  }
+  #admin-root.on { pointer-events: auto; }
+  .admin-gate, .admin-dash {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background: rgba(8, 8, 10, .72);
+    backdrop-filter: blur(16px);
+  }
+  .admin-gate.open, .admin-dash.open { display: grid; place-items: center; }
+  .admin-gate-card {
+    width: min(92vw, 540px);
+    padding: 2rem;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(24, 20, 16, .98), rgba(12, 10, 8, .98));
+    border: 1px solid rgba(184, 151, 90, .22);
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    color: var(--cream);
+  }
+  .admin-gate-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 .3rem;
+  }
+  .admin-gate-sub {
+    color: var(--mid);
+    margin: 0 0 1.2rem;
+    line-height: 1.7;
+  }
+  .admin-row {
+    display: grid;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+  .admin-row input, .admin-row textarea, .admin-field, .admin-area {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(184,151,90,.18);
+    background: rgba(255,255,255,.05);
+    color: var(--cream);
+    padding: .85rem 1rem;
+    outline: none;
+  }
+  .admin-row textarea, .admin-area { min-height: 110px; resize: vertical; }
+  .admin-action {
+    border: 0;
+    border-radius: 999px;
+    padding: .9rem 1.2rem;
+    background: linear-gradient(135deg, var(--gold), #d9bc82);
+    color: var(--ink);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .admin-shell {
+    width: min(96vw, 1480px);
+    height: min(94vh, 980px);
+    border-radius: 30px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(18, 14, 10,.98), rgba(7, 7, 8,.98));
+    border: 1px solid rgba(184,151,90,.18);
+    box-shadow: 0 30px 90px rgba(0,0,0,.55);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    color: var(--cream);
+  }
+  .admin-sidebar {
+    padding: 1.25rem;
+    border-right: 1px solid rgba(184,151,90,.12);
+    background: rgba(255,255,255,.02);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .admin-brand {
+    padding: 1rem;
+    border-radius: 22px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(184,151,90,.15);
+  }
+  .admin-brand h2 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+  }
+  .admin-brand p {
+    margin: .35rem 0 0;
+    color: var(--mid);
+    line-height: 1.5;
+    font-size: .92rem;
+  }
+  .admin-tabs {
+    display: grid;
+    gap: .5rem;
+  }
+  .admin-tab {
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    background: rgba(255,255,255,.03);
+    color: var(--cream);
+    padding: .85rem 1rem;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .admin-tab.on {
+    background: rgba(184,151,90,.14);
+    border-color: rgba(184,151,90,.35);
+    color: #fff;
+  }
+  .admin-sidebar .admin-small {
+    margin-top: auto;
+    color: var(--mid);
+    font-size: .82rem;
+    line-height: 1.6;
+  }
+  .admin-main {
+    overflow: auto;
+    padding: 1.1rem;
+  }
+  .admin-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 22px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(184,151,90,.14);
+    backdrop-filter: blur(12px);
+  }
+  .admin-topbar strong { font-size: 1.05rem; }
+  .admin-top-actions { display: flex; gap: .55rem; flex-wrap: wrap; }
+  .admin-pill-btn {
+    border: 1px solid rgba(184,151,90,.18);
+    background: rgba(255,255,255,.04);
+    color: var(--cream);
+    border-radius: 999px;
+    padding: .72rem .95rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .admin-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .admin-card {
+    grid-column: span 12;
+    border-radius: 24px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(184,151,90,.12);
+    padding: 1rem;
+  }
+  .admin-card.half { grid-column: span 6; }
+  .admin-card.third { grid-column: span 4; }
+  .admin-card h3 {
+    margin: 0 0 .75rem;
+    font-size: 1.05rem;
+  }
+  .admin-note {
+    color: var(--mid);
+    line-height: 1.65;
+    font-size: .92rem;
+  }
+  .admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: .7rem;
+  }
+  .admin-form-grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .admin-form-grid.one { grid-template-columns: 1fr; }
+  .admin-field {
+    font: inherit;
+  }
+  .admin-field::placeholder { color: rgba(255,255,255,.45); }
+  .admin-savebar {
+    margin-top: .8rem;
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+  }
+  .admin-savebar .admin-action.secondary {
+    background: rgba(255,255,255,.06);
+    color: var(--cream);
+    border: 1px solid rgba(184,151,90,.18);
+  }
+  .admin-list {
+    display: grid;
+    gap: .7rem;
+    margin-top: .9rem;
+  }
+  .admin-list-item {
+    display: grid;
+    grid-template-columns: 84px 1fr auto;
+    gap: .8rem;
+    align-items: center;
+    padding: .75rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(184,151,90,.11);
+  }
+  .admin-list-item.compact { grid-template-columns: 1fr auto; }
+  .admin-list-item video, .admin-list-item iframe, .admin-list-item img {
+    width: 84px;
+    height: 62px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: #000;
+  }
+  .admin-item-title { font-weight: 700; margin: 0 0 .2rem; }
+  .admin-item-sub { margin: 0; color: var(--mid); font-size: .85rem; line-height: 1.45; }
+  .admin-item-actions {
+    display: flex;
+    gap: .35rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .admin-mini {
+    border: 1px solid rgba(184,151,90,.18);
+    background: rgba(255,255,255,.04);
+    color: var(--cream);
+    border-radius: 999px;
+    padding: .55rem .75rem;
+    cursor: pointer;
+    font-size: .82rem;
+  }
+  .admin-mini.warn { border-color: rgba(255,120,120,.2); color: #ffd0d0; }
+  .admin-mini.ok { border-color: rgba(184,151,90,.28); }
+  .admin-section-title {
+    display: flex;
+    justify-content: space-between;
+    gap: .75rem;
+    align-items: center;
+    margin-bottom: .7rem;
+  }
+  .admin-section-title .counts {
+    color: var(--mid);
+    font-size: .86rem;
+  }
+  .admin-preview {
+    padding: .9rem;
+    border-radius: 18px;
+    background: rgba(0,0,0,.18);
+    border: 1px solid rgba(184,151,90,.08);
+  }
+  .admin-preview h4 { margin: 0 0 .3rem; font-size: .95rem; }
+  .admin-preview p { margin: 0; color: var(--mid); font-size: .86rem; line-height: 1.55; }
+  .admin-filter {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-top: .7rem;
+  }
+  .admin-filter .admin-pill-btn.on {
+    background: rgba(184,151,90,.16);
+    border-color: rgba(184,151,90,.33);
+  }
+  @media (max-width: 1100px) {
+    .admin-shell { grid-template-columns: 1fr; height: min(96vh, 980px); }
+    .admin-sidebar { border-right: 0; border-bottom: 1px solid rgba(184,151,90,.12); }
+    .admin-card.half, .admin-card.third { grid-column: span 12; }
+  }
+  @media (max-width: 760px) {
+    .admin-form-grid, .admin-form-grid.three { grid-template-columns: 1fr; }
+    .admin-list-item { grid-template-columns: 1fr; }
+    .admin-item-actions { justify-content: flex-start; }
+    .admin-topbar { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
 </head>
 <body>
     <div id="cur"></div><div id="cur-r"></div>
@@ -1657,6 +2300,8 @@
             <li><a href="#" onclick="gp('workshops');return false;"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Workshops</a></li>
             <li><a href="#" onclick="gp('performance');return false;"><i class="fas fa-theater-masks" aria-hidden="true"></i> Performances</a></li>
             <li><a href="#" onclick="gp('gallery');return false;"><i class="fas fa-images" aria-hidden="true"></i> Gallery</a></li>
+            <li><a href="#" onclick="gp('media');return false;"><i class="fas fa-photo-film" aria-hidden="true"></i> Media</a></li>
+            <li><a href="#" onclick="gp('contact');return false;"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a></li>
             <li><a href="#" onclick="gp('linktree');return false;"><i class="fas fa-link" aria-hidden="true"></i> Links</a></li>
         </ul>
     </nav>
@@ -1667,6 +2312,8 @@
         <a href="#" onclick="gp('workshops');return false;"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Workshops</a>
         <a href="#" onclick="gp('performance');return false;"><i class="fas fa-theater-masks" aria-hidden="true"></i> Performances</a>
         <a href="#" onclick="gp('gallery');return false;"><i class="fas fa-images" aria-hidden="true"></i> Gallery</a>
+        <a href="#" onclick="gp('media');return false;"><i class="fas fa-photo-film" aria-hidden="true"></i> Media</a>
+        <a href="#" onclick="gp('contact');return false;"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
         <a href="#" onclick="gp('linktree');return false;"><i class="fas fa-link" aria-hidden="true"></i> Links</a>
     </div>
 
@@ -1678,15 +2325,15 @@
                 <div class="orb orb2" aria-hidden="true"></div>
                 <div class="hero-layout">
                     <div class="hero-left">
-                        <div class="hero-eyebrow"><i class="fas fa-globe" aria-hidden="true"></i> Performance Artist </div>
+                        <div class="hero-eyebrow" id="hero-eyebrow"><i class="fas fa-globe" aria-hidden="true"></i> Performance Artist </div>
                         <h1 class="hero-name">
-                            <span>Pablo</span>
-                            <span>Talavera</span>
+                            <span id="hero-name-1">Pablo</span>
+                            <span id="hero-name-2">Talavera</span>
                         </h1>
-                        <p class="hero-desc">Physical theatre · Circus arts · Immersive experiences</p>
+                        <p class="hero-desc" id="hero-desc">Physical theatre · Circus arts · Immersive experiences</p>
                         <div class="hero-btns">
-                            <button class="btn-pri" onclick="document.querySelector('.sched-sec').scrollIntoView({behavior:'smooth'})"><i class="fas fa-calendar" aria-hidden="true"></i> Schedule</button>
-                            <button class="btn-gh" onclick="document.querySelector('.contact-cta').scrollIntoView({behavior:'smooth'})"><i class="fas fa-paper-plane" aria-hidden="true"></i> Contact</button>
+                            <button class="btn-pri" onclick="gp('workshops')"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Workshops</button>
+                            <button class="btn-gh" onclick="gp('media')"><i class="fas fa-photo-film" aria-hidden="true"></i> Show Reels</button>
                         </div>
                     </div>
                     <div class="hero-right-col">
@@ -1701,8 +2348,8 @@
                 <div class="about-inner">
                     <div class="rv"><div class="about-img-wrap"><img src="https://res.cloudinary.com/dol2caucl/image/upload/v1775277977/20260212-fof-003_aer5iw.jpg" alt="Pablo Talavera performance artist" id="about-img" loading="lazy"/></div></div>
                     <div class="rv d1">
-                        <h2 class="about-heading">Pablo Talavera</h2>
-                        <p class="about-body">Versatile artist merging movement, space, and light into immersive experiences. Experienced in circus arts, physical theatre, and stage design from intimate performances to festival main stages across the world.</p>
+                        <h2 class="about-heading" id="about-heading">Pablo Talavera</h2>
+                        <p class="about-body" id="about-body">Versatile artist merging movement, space, and light into immersive experiences. Experienced in circus arts, physical theatre, and stage design from intimate performances to festival main stages across the world.</p>
                         <div class="about-pills">
                             <span class="about-pill"><i class="fas fa-theater-masks" aria-hidden="true"></i> Physical Theatre</span>
                             <span class="about-pill"><i class="fas fa-ring" aria-hidden="true"></i> Acro Staff</span>
@@ -1716,14 +2363,14 @@
 
             <section class="skills-band" aria-labelledby="skills-heading">
                 <div class="skills-band-inner">
-                    <h2 id="skills-heading" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);color:var(--cream);margin-bottom:2.5rem;"><i class="fas fa-star" aria-hidden="true"></i>Skillsets</h2>
+                    <h2 id="skills-heading" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);color:var(--cream);margin-bottom:2.5rem;"><i class="fas fa-star" aria-hidden="true"></i>Skill sets</h2>
                     <div class="skills-grid">
                         <div class="skill-block rv d1">
                             <div class="skill-ico" aria-hidden="true"><i class="fas fa-theater-masks"></i></div>
                             <h3 class="skill-title">Performance</h3>
                             <ul class="skill-items">
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Physical Theatre</li>
-                                <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Acrobartics</li>
+                                <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Acrobatics</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Immersive Theatre</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Acro Staff</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Fire Performance</li>
@@ -1736,7 +2383,7 @@
                             <ul class="skill-items">
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Acro Staff</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Fire Performance</li>
-                                <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Spacial awareness</li>
+                                <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Spatial awareness</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Contact Dance</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Partner Acrobatics</li>
                                 <li class="sbi"><i class="fas fa-check" style="color:var(--gold);" aria-hidden="true"></i> Contemporary Dance</li>
@@ -1803,8 +2450,8 @@
                         <p class="cta-sub">Performances · Workshops · Festival bookings · Custom projects</p>
                     </div>
                     <div class="cta-right rv d2">
-                        <a href="mailto:pablotalavera089@gmail.com"><button class="cta-btn"><i class="fas fa-envelope" aria-hidden="true"></i> Email</button></a>
-                        <a href="https://instagram.com/echo_between" target="_blank" rel="noopener noreferrer"><button class="cta-btn-gh"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</button></a>
+                        <a href="mailto:pablotalavera089@gmail.com" id="contact-email-link"><button class="cta-btn" id="contact-email-btn"><i class="fas fa-envelope" aria-hidden="true"></i> Email</button></a>
+                        <a href="https://instagram.com/echo_between" target="_blank" rel="noopener noreferrer" id="contact-instagram-link"><button class="cta-btn-gh" id="contact-instagram-btn"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</button></a>
                     </div>
                 </div>
             </section>
@@ -1852,6 +2499,79 @@
             </section>
         </div>
 
+        <!-- MEDIA PAGE -->
+        <div id="pg-media" class="pg" role="region" aria-label="Media page">
+            <section class="media-page-sec">
+                <div class="gallery-inner">
+                    <h2 class="gallery-title"><i class="fas fa-photo-film" aria-hidden="true"></i> Media</h2>
+                    <div class="media-hub">
+                        <section class="media-block rv">
+                            <div class="media-block-head">
+                                <div>
+                                    <h3 class="media-block-title"><i class="fas fa-download" aria-hidden="true"></i> Media & Press Downloads</h3>
+                                    <p class="media-block-sub">Add your Google Drive links in the admin panel to offer a press kit, profile PDF, tech rider, or zipped media folder.</p>
+                                </div>
+                            </div>
+                            <div class="download-grid" id="download-grid"></div>
+                        </section>
+
+                        <section class="media-block rv d1">
+                            <div class="media-block-head">
+                                <div>
+                                    <h3 class="media-block-title"><i class="fas fa-images" aria-hidden="true"></i> Photo Slideshow</h3>
+                                    <p class="media-block-sub">Your gallery images rotate here as a clean slideshow. Add more images and this section updates automatically.</p>
+                                </div>
+                            </div>
+                            <div class="slideshow-wrap">
+                                <button class="slide-nav" type="button" onclick="prevSlide()" aria-label="Previous slide"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                                <div class="slide-frame" id="slide-frame"></div>
+                                <button class="slide-nav" type="button" onclick="nextSlide()" aria-label="Next slide"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                            </div>
+                        </section>
+
+                        <section class="media-block rv d2">
+                            <div class="media-block-head">
+                                <div>
+                                    <h3 class="media-block-title"><i class="fas fa-video" aria-hidden="true"></i> Showreels</h3>
+                                    <p class="media-block-sub">Paste reel embed links from YouTube, Vimeo, or Instagram in the admin panel to display them here.</p>
+                                </div>
+                            </div>
+                            <div class="reel-grid" id="reel-grid"></div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="pg-contact" class="pg" role="region" aria-label="Contact page">
+            <section class="contact-page">
+                <div class="contact-page-inner">
+                    <div class="contact-copy rv">
+                        <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</div>
+                        <h2 class="cta-title" id="contact-page-title">Let's work<br/>together</h2>
+                        <p class="cta-sub" id="contact-page-sub">Performances · Workshops · Festival bookings · Custom projects</p>
+                        <p class="contact-note" id="contact-page-body">Tell me about your event, your space, and your time frame. I will reply with the most useful next step.</p>
+                        <div class="contact-mini-links">
+                            <a href="mailto:pablotalavera089@gmail.com" id="contact-page-email-link" class="contact-mini-link"><i class="fas fa-envelope"></i> Email</a>
+                            <a href="https://instagram.com/echo_between" target="_blank" rel="noopener noreferrer" id="contact-page-instagram-link" class="contact-mini-link"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="#" onclick="gp('media');return false;" class="contact-mini-link"><i class="fas fa-photo-film"></i> Show reels</a>
+                        </div>
+                    </div>
+                    <form class="contact-form rv d2" id="contact-form" onsubmit="submitContactForm(event)">
+                        <div class="contact-form-grid">
+                            <input type="text" id="contact-name" placeholder="Your name" required />
+                            <input type="email" id="contact-email" placeholder="Your email" required />
+                            <input type="text" id="contact-subject" placeholder="Subject" required />
+                        </div>
+                        <textarea id="contact-message" placeholder="Tell me about your project, date, location, and idea..." required></textarea>
+                        <button type="submit" class="btn-primary contact-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Send message</button>
+                        <p class="contact-form-help">This form opens your mail app with the message filled in. No backend needed for GitHub Pages.</p>
+                    </form>
+                </div>
+            </section>
+        </div>
+
         <!-- LINKTREE PAGE -->
         <div id="pg-linktree" class="pg" role="region" aria-label="Links page">
             <section class="linktree-sec">
@@ -1893,6 +2613,23 @@
                 <input class="admin-input" id="evt-name" placeholder="Event Name" aria-label="Event name"/>
                 <input class="admin-input" id="evt-location" placeholder="Location" aria-label="Event location"/>
                 <button class="admin-btn-add" onclick="addEvent()"><i class="fas fa-plus" aria-hidden="true"></i> Add Event</button>
+            </div>
+
+            <div class="admin-section">
+                <label class="admin-label"><i class="fas fa-file-download" aria-hidden="true"></i> Press Kit / Download Links</label>
+                <input class="admin-input" id="dl-title" placeholder="File name (Press Kit PDF)" aria-label="Download title"/>
+                <input class="admin-input" id="dl-url" placeholder="Google Drive link" aria-label="Download URL"/>
+                <input class="admin-input" id="dl-label" placeholder="Button label (Download PDF)" aria-label="Download button label"/>
+                <button class="admin-btn-add" onclick="addDownload()"><i class="fas fa-plus" aria-hidden="true"></i> Add Download</button>
+                <div id="admin-download-list" style="margin-top:.8rem;font-size:.8rem;"></div>
+            </div>
+
+            <div class="admin-section">
+                <label class="admin-label"><i class="fas fa-play-circle" aria-hidden="true"></i> Showreels</label>
+                <input class="admin-input" id="reel-title" placeholder="Reel title" aria-label="Reel title"/>
+                <input class="admin-input" id="reel-url" placeholder="YouTube / Vimeo / Instagram embed link" aria-label="Reel URL"/>
+                <button class="admin-btn-add" onclick="addReel()"><i class="fas fa-plus" aria-hidden="true"></i> Add Reel</button>
+                <div id="admin-reel-list" style="margin-top:.8rem;font-size:.8rem;"></div>
             </div>
 
             <div class="admin-section">
@@ -1963,7 +2700,7 @@ function gp(id) {
     });
 
     page.classList.add('on');
-    const map = { home: 0, workshops: 1, performance: 2, gallery: 3, linktree: 4 };
+    const map = { home: 0, workshops: 1, performance: 2, gallery: 3, media: 4, contact: 5, linktree: 6 };
     if (map[id] !== undefined) {
         document.querySelectorAll('.pb')[map[id]]?.classList.add('on');
         document.querySelectorAll('.pb')[map[id]]?.setAttribute('aria-selected', 'true');
@@ -1979,7 +2716,8 @@ function gp(id) {
 }
 
 // WORKSHOPS DATA
-const WS = [
+const WORKSHOPS_KEY = 'portfolio_workshops_v2';
+const DEFAULT_WORKSHOPS = [
     { title: 'Physical Preparation', sub: "The Performer's Body", type: 'Performance Training', dur: '90 min', tags: ['All Levels'], ov: 'Foundation for every performer. Smart, functional physical toolkit built on 8 years of experience.', aud: ['Circus & dance students', 'Wellness communities', 'Theater companies'], obj: ['Functional strength', 'Injury prevention', 'Body intelligence'] },
     { title: 'Spatial Awareness', sub: 'Seven Spatial Layers', type: 'Physical Theatre', dur: '120 min', tags: ['All Levels'], ov: 'Space becomes language through movement. Master the seven layers of spatial awareness.', aud: ['Performers', 'Performance artists', 'Movement teachers'], obj: ['Stage composition', 'Group coordination', 'Authentic presence'] },
     { title: 'Partner Movement', sub: 'Dialogue in Motion', type: 'Movement', dur: '90 min', tags: ['All Levels'], ov: 'Moving with someone through weight sharing and trust. No experience necessary.', aud: ['General public', 'Corporate teams', 'Yoga communities'], obj: ['Physical communication', 'Trust building', 'Non-verbal dialogue'] },
@@ -1989,10 +2727,65 @@ const WS = [
     { title: 'Contact Improvisation', sub: 'Moving Conversation', type: 'Dance', dur: '120 min', tags: ['All Levels'], ov: 'Deep practice in presence, touch, and shared weight. The most human of practices.', aud: ['Dancers', 'Somatic practitioners', 'Movement seekers'], obj: ['CI principles', 'Weight sensitivity', 'Authentic connection'] }
 ];
 
-function renderWS() { document.getElementById('wgrid').innerHTML = WS.map((w, i) => `<div class="wcard rv" style="transition-delay:${(i % 3) * .1}s" onclick="owm(${i})" role="listitem"><div class="wttl">${w.title}</div><div class="wsub">${w.sub}</div><div class="wtags">${w.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>`).join(''); }
+function loadStoredWorkshops() {
+    try {
+        const raw = localStorage.getItem(WORKSHOPS_KEY);
+        if (!raw) return DEFAULT_WORKSHOPS.slice();
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : DEFAULT_WORKSHOPS.slice();
+    } catch {
+        return DEFAULT_WORKSHOPS.slice();
+    }
+}
+
+function saveStoredWorkshops() {
+    localStorage.setItem(WORKSHOPS_KEY, JSON.stringify(workshops));
+}
+
+let workshops = loadStoredWorkshops();
+
+function renderWS() {
+    const grid = document.getElementById('wgrid');
+    if (!grid) return;
+    grid.innerHTML = workshops.map((w, i) => {
+        const overview = w.ov || '';
+        const aud = Array.isArray(w.aud) ? w.aud : [];
+        const obj = Array.isArray(w.obj) ? w.obj : [];
+        return `
+        <article class="wcard rv" style="transition-delay:${(i % 3) * .08}s">
+            <div class="wcard-top">
+                <div>
+                    <div class="wttl">${w.title}</div>
+                    <div class="wsub">${w.sub}</div>
+                </div>
+                <div class="wmeta">
+                    <span class="tag">${w.type}</span>
+                    <span class="tag">${w.dur}</span>
+                </div>
+            </div>
+            <div class="wdesc">${overview}</div>
+            <div class="wsection">
+                <div class="wsect-title">Who it's for</div>
+                <ul>${aud.map(a => `<li>${a}</li>`).join('')}</ul>
+            </div>
+            <div class="wsection">
+                <div class="wsect-title">Objectives</div>
+                <ul>${obj.map(o => `<li>${o}</li>`).join('')}</ul>
+            </div>
+            <button class="wmore" type="button" onclick="owm(${i})">Open details</button>
+        </article>`;
+    }).join('');
+}
+
 renderWS();
 
-function owm(i) { const w = WS[i]; document.getElementById('m-body-header').innerHTML = `<div class="wm-ttl" id="wmo-title">${w.title}</div><div class="wm-sub">${w.type} · ${w.dur}</div>`; document.getElementById('m-body').innerHTML = `<div class="wmst">Overview</div><p>${w.ov}</p><div class="wmst" style="margin-top:1.5rem;">Who It's For</div><ul>${w.aud.map(a => `<li><i class="fas fa-arrow-right" style="color:var(--gold);margin-right:.5rem;" aria-hidden="true"></i>${a}</li>`).join('')}</ul><div class="wmst" style="margin-top:1.5rem;">Objectives</div><ul>${w.obj.map(o => `<li><i class="fas fa-check" style="color:var(--gold);margin-right:.5rem;" aria-hidden="true"></i>${o}</li>`).join('')}</ul>`; document.getElementById('wmo').classList.add('open'); }
+function owm(i) {
+    const w = workshops[i];
+    if (!w) return;
+    document.getElementById('m-body-header').innerHTML = `<div class="wm-ttl" id="wmo-title">${w.title}</div><div class="wm-sub">${w.type} · ${w.dur}</div>`;
+    document.getElementById('m-body').innerHTML = `<div class="wmst">Overview</div><p>${w.ov}</p><div class="wmst" style="margin-top:1.5rem;">Who It's For</div><ul>${(w.aud || []).map(a => `<li><i class="fas fa-arrow-right" style="color:var(--gold);margin-right:.5rem;" aria-hidden="true"></i>${a}</li>`).join('')}</ul><div class="wmst" style="margin-top:1.5rem;">Objectives</div><ul>${(w.obj || []).map(o => `<li><i class="fas fa-check" style="color:var(--gold);margin-right:.5rem;" aria-hidden="true"></i>${o}</li>`).join('')}</ul>`;
+    document.getElementById('wmo').classList.add('open');
+}
 function cwm() { document.getElementById('wmo').classList.remove('open'); }
 
 // PERFORMANCES
@@ -2009,7 +2802,9 @@ renderPS();
 // PERSISTENT DATA
 const STORAGE_KEYS = {
     gallery: 'portfolio_gallery',
-    schedule: 'portfolio_schedule'
+    schedule: 'portfolio_schedule',
+    downloads: 'portfolio_downloads',
+    reels: 'portfolio_reels'
 };
 
 const DEFAULT_GALLERY = [
@@ -2021,6 +2816,9 @@ const DEFAULT_SCHEDULE = [
     { day: '03', month: 'Feb 2025', event: 'Fai Jai Flow Festival', location: 'Pai, Thailand', badgeIcon: 'fas fa-fire', badgeText: 'Fire', past: true },
     { day: '—', month: 'Spring 25', event: 'Europe Festival coming soon', location: 'Europe — TBC', badgeIcon: 'fas fa-star', badgeText: 'Performance', past: false }
 ];
+
+const DEFAULT_DOWNLOADS = [];
+const DEFAULT_REELS = [];
 
 function readStoredArray(key, fallback) {
     try {
@@ -2043,6 +2841,102 @@ function writeStoredArray(key, value) {
 
 let gallery = readStoredArray(STORAGE_KEYS.gallery, DEFAULT_GALLERY);
 let schedule = readStoredArray(STORAGE_KEYS.schedule, DEFAULT_SCHEDULE);
+let downloads = readStoredArray(STORAGE_KEYS.downloads, DEFAULT_DOWNLOADS);
+let reels = readStoredArray(STORAGE_KEYS.reels, DEFAULT_REELS);
+let slideIndex = 0;
+let slideTimer = null;
+
+function normalizeDriveDownloadUrl(url) {
+    if (!url) return '';
+    const driveMatch = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/);
+    if (driveMatch) {
+        return `https://drive.google.com/uc?export=download&id=${driveMatch[1]}`;
+    }
+    return url;
+}
+
+function normalizeReelUrl(url) {
+    if (!url) return '';
+    const ytWatch = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+    const ytShort = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+    const ytEmbed = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/);
+    if (ytEmbed) return url;
+    if (ytWatch) return `https://www.youtube.com/embed/${ytWatch[1]}`;
+    if (ytShort) return `https://www.youtube.com/embed/${ytShort[1]}`;
+    if (/instagram\.com\/(?:reel|p|tv)\//.test(url) && !/\/embed\/?$/.test(url)) return url.replace(/\/?$/, '') + 'embed';
+    const vimeo = url.match(/vimeo\.com\/(\d+)/);
+    if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`;
+    return url;
+}
+
+function restartSlideTimer() {
+    if (slideTimer) clearInterval(slideTimer);
+    if (gallery.length > 1) {
+        slideTimer = setInterval(() => {
+            slideIndex = (slideIndex + 1) % gallery.length;
+            renderSlideshow();
+        }, 5000);
+    }
+}
+
+function renderSlideshow() {
+    const frame = document.getElementById('slide-frame');
+    if (!frame) return;
+    if (!gallery.length) {
+        frame.innerHTML = '<div class="slide-empty">Add images in the admin panel to build your slideshow.</div>';
+        restartSlideTimer();
+        return;
+    }
+    slideIndex = ((slideIndex % gallery.length) + gallery.length) % gallery.length;
+    const img = gallery[slideIndex];
+    frame.innerHTML = `
+        <img src="${img.url}" alt="${img.label}" loading="lazy"/>
+        <div class="slide-caption">${img.label}</div>
+    `;
+    restartSlideTimer();
+}
+
+function nextSlide() {
+    if (!gallery.length) return;
+    slideIndex = (slideIndex + 1) % gallery.length;
+    renderSlideshow();
+}
+
+function prevSlide() {
+    if (!gallery.length) return;
+    slideIndex = (slideIndex - 1 + gallery.length) % gallery.length;
+    renderSlideshow();
+}
+
+function renderDownloads() {
+    const grid = document.getElementById('download-grid');
+    if (!grid) return;
+    grid.innerHTML = downloads.length ? downloads.map(item => `
+        <a class="download-card" href="${normalizeDriveDownloadUrl(item.url)}" target="_blank" rel="noopener noreferrer">
+            <div class="download-icon"><i class="${item.icon || 'fas fa-file-pdf'}"></i></div>
+            <div>
+                <div class="download-title">${item.title}</div>
+                <div class="download-label">${item.label || 'Download'}</div>
+            </div>
+        </a>
+    `).join('') : '<div class="media-empty">No downloads added yet. Open the admin panel and add your Google Drive press kit, tech rider, or media folder.</div>';
+}
+
+function renderReels() {
+    const grid = document.getElementById('reel-grid');
+    if (!grid) return;
+    grid.innerHTML = reels.length ? reels.map(item => `
+        <article class="reel-card">
+            <iframe class="reel-frame" src="${normalizeReelUrl(item.url)}" title="${item.title || 'Showreel'}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="reel-info">
+                <div>
+                    <h4 class="reel-name">${item.title || 'Showreel'}</h4>
+                    <div class="reel-source">${item.label || 'Embedded video'}</div>
+                </div>
+            </div>
+        </article>
+    `).join('') : '<div class="media-empty">No showreels yet. Add an embed link from YouTube, Vimeo, or Instagram in the admin panel.</div>';
+}
 
 function renderSchedule() {
     const list = document.getElementById('sched-list');
@@ -2071,6 +2965,7 @@ function renderGallery() {
             <div class="gallery-label">${img.label}</div>
             <button class="gallery-del" onclick="event.stopPropagation();delGalleryImage(${i})" aria-label="Delete image"><i class="fas fa-trash" aria-hidden="true"></i></button>
         </div>`).join('');
+    renderSlideshow();
 }
 
 function addCloudinaryImage() {
@@ -2123,6 +3018,66 @@ function delGalleryImage(i) {
     updateAdminGalleryList();
 }
 
+function addDownload() {
+    if (!password()) return;
+    const title = document.getElementById('dl-title')?.value.trim();
+    const url = document.getElementById('dl-url')?.value.trim();
+    const label = document.getElementById('dl-label')?.value.trim() || 'Download';
+    if (!title || !url) return alert('Fill download title and Google Drive link');
+
+    downloads.unshift({
+        title,
+        url,
+        label,
+        icon: 'fas fa-file-pdf'
+    });
+
+    writeStoredArray(STORAGE_KEYS.downloads, downloads);
+    renderDownloads();
+    updateAdminDownloadList();
+
+    ['dl-title', 'dl-url', 'dl-label'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+}
+
+function delDownload(i) {
+    downloads.splice(i, 1);
+    writeStoredArray(STORAGE_KEYS.downloads, downloads);
+    renderDownloads();
+    updateAdminDownloadList();
+}
+
+function addReel() {
+    if (!password()) return;
+    const title = document.getElementById('reel-title')?.value.trim();
+    const url = document.getElementById('reel-url')?.value.trim();
+    if (!title || !url) return alert('Fill reel title and link');
+
+    reels.unshift({
+        title,
+        url,
+        label: 'Showreel'
+    });
+
+    writeStoredArray(STORAGE_KEYS.reels, reels);
+    renderReels();
+    updateAdminReelList();
+
+    ['reel-title', 'reel-url'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+}
+
+function delReel(i) {
+    reels.splice(i, 1);
+    writeStoredArray(STORAGE_KEYS.reels, reels);
+    renderReels();
+    updateAdminReelList();
+}
+
 function updateAboutImage(url) {
     const aboutImg = document.getElementById('about-img');
     if (aboutImg) aboutImg.src = url;
@@ -2142,8 +3097,24 @@ function updateAdminGalleryList() {
 
 renderSchedule();
 renderGallery();
+renderDownloads();
+renderReels();
 updateAdminGalleryList();
+updateAdminDownloadList();
+updateAdminReelList();
 
+function submitContactForm(event) {
+    event.preventDefault();
+    const name = document.getElementById('contact-name')?.value.trim();
+    const email = document.getElementById('contact-email')?.value.trim();
+    const subject = document.getElementById('contact-subject')?.value.trim();
+    const message = document.getElementById('contact-message')?.value.trim();
+    if (!name || !email || !subject || !message) return alert('Please fill out all fields.');
+    const to = document.getElementById('contact-email-link')?.getAttribute('href') || 'mailto:pablotalavera089@gmail.com';
+    const mailto = to.startsWith('mailto:') ? to : 'mailto:pablotalavera089@gmail.com';
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    window.location.href = `${mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 // LINKTREE
 const links = [
     { ico: 'fab fa-youtube', title: 'YouTube Channel', desc: 'Showreels & Projects', url: 'https://m.youtube.com/@echo_between' },
@@ -2197,6 +3168,8 @@ function exportData() {
     const data = {
         gallery,
         schedule,
+        downloads,
+        reels,
         timestamp: new Date().toISOString()
     };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
@@ -2232,6 +3205,20 @@ function importData() {
                     renderSchedule();
                 }
 
+                if (Array.isArray(data.downloads)) {
+                    downloads = data.downloads;
+                    writeStoredArray(STORAGE_KEYS.downloads, downloads);
+                    renderDownloads();
+                    updateAdminDownloadList();
+                }
+
+                if (Array.isArray(data.reels)) {
+                    reels = data.reels;
+                    writeStoredArray(STORAGE_KEYS.reels, reels);
+                    renderReels();
+                    updateAdminReelList();
+                }
+
                 alert('✓ Imported successfully!');
             } catch (err) {
                 alert('❌ Error importing file');
@@ -2242,5 +3229,1009 @@ function importData() {
     input.click();
 }
     </script>
+    <div id="admin-root"></div>
+
+<script id="admin-upgrade-script">
+(() => {
+  const ADMIN_PASSWORD_HASH = '89e5c3c5101fe178aace4586f09da37648ac3b21bd57135ca3e99b6ace9cfd63';
+  const ADMIN_SESSION_KEY = 'pablo_admin_session_v2';
+  const ADMIN_SETTINGS_KEY = 'portfolio_site_settings_v2';
+  const ADMIN_LINKS_KEY = 'portfolio_links_v2';
+  const ADMIN_WORKSHOPS_KEY = 'portfolio_workshops_admin_v2';
+  const ADMIN_IDLE_MS = 30 * 60 * 1000;
+
+  const DEFAULT_SETTINGS = {
+    eyebrow: 'Performance Artist',
+    heroFirst: 'Pablo',
+    heroLast: 'Talavera',
+    heroDesc: 'Physical theatre · Circus arts · Immersive experiences',
+    aboutHeading: 'Pablo Talavera',
+    aboutBody: 'Versatile artist merging movement, space, and light into immersive experiences. Experienced in circus arts, physical theatre, and stage design from intimate performances to festival main stages across the world.',
+    aboutImage: 'https://res.cloudinary.com/dol2caucl/image/upload/v1775277977/20260212-fof-003_aer5iw.jpg',
+    ctaTitle: "Let's work<br/>together",
+    ctaSub: 'Performances · Workshops · Festival bookings · Custom projects',
+    emailHref: 'mailto:pablotalavera089@gmail.com',
+    emailLabel: 'Email',
+    instagramHref: 'https://instagram.com/echo_between',
+    instagramLabel: 'Instagram',
+    heroButton1Label: 'Schedule',
+    heroButton2Label: 'Show Reels',
+    contactBody: 'Tell me about your event, your space, and your time frame. I will reply with the most useful next step.',
+  };
+
+  const DEFAULT_LINKS = [
+    { id: crypto.randomUUID(), ico: 'fab fa-youtube', title: 'YouTube Channel', desc: 'Showreels & Projects', url: 'https://m.youtube.com/@echo_between' },
+    { id: crypto.randomUUID(), ico: 'fab fa-instagram', title: 'Instagram', desc: 'Updates & Reels', url: 'https://www.instagram.com/echo_between?igsh=MTJpNnRqb3FqYXIwcQ==' },
+    { id: crypto.randomUUID(), ico: 'fab fa-tiktok', title: 'TikTok Videos', desc: '@echo_between', url: 'https://www.tiktok.com/@echo_between' },
+    { id: crypto.randomUUID(), ico: 'fas fa-palette', title: 'Design Portfolio', desc: 'Canva Showreels', url: 'https://www.canva.com/design/DAGf6uP86xM/33xWR0gQr4wwYKmltd0LtQ/edit' },
+    { id: crypto.randomUUID(), ico: 'fas fa-heart', title: 'Support My Work', desc: 'Ko-fi Tips & Donations', url: 'https://ko-fi.com/echo_between' }
+  ];
+
+  const root = document.getElementById('admin-root');
+  if (!root) return;
+
+  const state = {
+    authed: sessionStorage.getItem(ADMIN_SESSION_KEY) === '1',
+    tab: 'content',
+    editing: null,
+    idleTimer: null,
+  };
+
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const uid = () => (crypto.randomUUID ? crypto.randomUUID() : ('id-' + Math.random().toString(36).slice(2, 11)));
+  const loadJSON = (key, fallback) => {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return structuredClone(fallback);
+      const parsed = JSON.parse(raw);
+      return parsed ?? structuredClone(fallback);
+    } catch {
+      return structuredClone(fallback);
+    }
+  };
+  const saveJSON = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+
+  function normalizeArrays() {
+    if (Array.isArray(gallery)) {
+      gallery = gallery.map(item => ({ id: item.id || uid(), ...item }));
+      saveJSON(STORAGE_KEYS.gallery, gallery);
+    }
+    if (Array.isArray(schedule)) {
+      schedule = schedule.map(item => ({ id: item.id || uid(), ...item }));
+      saveJSON(STORAGE_KEYS.schedule, schedule);
+    }
+    if (Array.isArray(downloads)) {
+      downloads = downloads.map(item => ({ id: item.id || uid(), ...item }));
+      saveJSON(STORAGE_KEYS.downloads, downloads);
+    }
+    if (Array.isArray(reels)) {
+      reels = reels.map(item => ({ id: item.id || uid(), ...item }));
+      saveJSON(STORAGE_KEYS.reels, reels);
+    }
+    if (Array.isArray(adminWorkshops)) {
+      adminWorkshops = adminWorkshops.map(item => ({ id: item.id || uid(), ...item }));
+      workshops = adminWorkshops;
+      saveStoredWorkshops();
+      saveJSON(ADMIN_WORKSHOPS_KEY, adminWorkshops);
+    }
+  }
+
+  function loadSettings() {
+    const saved = loadJSON(ADMIN_SETTINGS_KEY, DEFAULT_SETTINGS);
+    return { ...DEFAULT_SETTINGS, ...saved };
+  }
+
+  function loadLinks() {
+    const saved = loadJSON(ADMIN_LINKS_KEY, DEFAULT_LINKS);
+    const arr = Array.isArray(saved) ? saved : [];
+    return arr.map(item => ({ id: item.id || uid(), ...item }));
+  }
+
+  function loadWorkshops() {
+    const saved = loadJSON(WORKSHOPS_KEY, workshops || DEFAULT_WORKSHOPS);
+    const arr = Array.isArray(saved) ? saved : [];
+    return arr.map(item => ({ id: item.id || uid(), ...item }));
+  }
+
+  let settings = loadSettings();
+  let adminLinks = loadLinks();
+  let adminWorkshops = loadWorkshops();
+  workshops = adminWorkshops;
+
+  function saveSettings() { saveJSON(ADMIN_SETTINGS_KEY, settings); }
+  function saveLinks() { saveJSON(ADMIN_LINKS_KEY, adminLinks); }
+  function saveWorkshops() { workshops = adminWorkshops; saveStoredWorkshops(); saveJSON(ADMIN_WORKSHOPS_KEY, adminWorkshops); }
+
+  function applySettings() {
+    const eyebrow = document.getElementById('hero-eyebrow');
+    if (eyebrow) eyebrow.innerHTML = `<i class="fas fa-globe" aria-hidden="true"></i> ${esc(settings.eyebrow)}`;
+    const n1 = document.getElementById('hero-name-1');
+    if (n1) n1.textContent = settings.heroFirst;
+    const n2 = document.getElementById('hero-name-2');
+    if (n2) n2.textContent = settings.heroLast;
+    const desc = document.getElementById('hero-desc');
+    if (desc) desc.textContent = settings.heroDesc;
+    const aboutHeading = document.getElementById('about-heading');
+    if (aboutHeading) aboutHeading.textContent = settings.aboutHeading;
+    const aboutBody = document.getElementById('about-body');
+    if (aboutBody) aboutBody.textContent = settings.aboutBody;
+    const aboutImg = document.getElementById('about-img');
+    if (aboutImg) aboutImg.src = settings.aboutImage;
+    const ctaTitle = document.getElementById('contact-heading');
+    if (ctaTitle) ctaTitle.innerHTML = settings.ctaTitle;
+    const ctaSub = document.querySelector('.cta-sub');
+    if (ctaSub) ctaSub.textContent = settings.ctaSub;
+    const cPageTitle = document.getElementById('contact-page-title');
+    if (cPageTitle) cPageTitle.innerHTML = settings.ctaTitle;
+    const cPageSub = document.getElementById('contact-page-sub');
+    if (cPageSub) cPageSub.textContent = settings.ctaSub;
+    const cPageBody = document.getElementById('contact-page-body');
+    if (cPageBody) cPageBody.textContent = settings.contactBody;
+    const cPageEmail = document.getElementById('contact-page-email-link');
+    if (cPageEmail) cPageEmail.href = settings.emailHref;
+    const cPageInsta = document.getElementById('contact-page-instagram-link');
+    if (cPageInsta) cPageInsta.href = settings.instagramHref;
+    const emailLink = document.getElementById('contact-email-link');
+    if (emailLink) emailLink.href = settings.emailHref;
+    const emailBtn = document.getElementById('contact-email-btn');
+    if (emailBtn) emailBtn.lastChild.textContent = ' ' + settings.emailLabel;
+    const instaLink = document.getElementById('contact-instagram-link');
+    if (instaLink) instaLink.href = settings.instagramHref;
+    const instaBtn = document.getElementById('contact-instagram-btn');
+    if (instaBtn) instaBtn.lastChild.textContent = ' ' + settings.instagramLabel;
+    const heroButtons = document.querySelectorAll('.hero-btns button');
+    if (heroButtons[0]) heroButtons[0].innerHTML = `<i class="fas fa-calendar" aria-hidden="true"></i> ${esc(settings.heroButton1Label)}`;
+    if (heroButtons[1]) heroButtons[1].innerHTML = `<i class="fas fa-paper-plane" aria-hidden="true"></i> ${esc(settings.heroButton2Label)}`;
+  }
+
+  async function sha256Hex(value) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function setIdleTimer() {
+    clearTimeout(state.idleTimer);
+    if (!state.authed) return;
+    state.idleTimer = setTimeout(() => logoutAdmin(true), ADMIN_IDLE_MS);
+  }
+
+  function markActivity() {
+    if (state.authed) setIdleTimer();
+  }
+  ['click', 'keydown', 'mousemove', 'touchstart'].forEach(evt => window.addEventListener(evt, markActivity, { passive: true }));
+
+  function openRoot() {
+    root.classList.add('on');
+  }
+  function closeRoot() {
+    root.classList.remove('on');
+    root.innerHTML = '';
+  }
+
+  function showGate(message = '') {
+    root.innerHTML = `
+      <div class="admin-gate open" id="admin-gate">
+        <div class="admin-gate-card">
+          <div class="admin-preview" style="margin-bottom:1rem;">
+            <h4><i class="fas fa-shield-alt" aria-hidden="true"></i> Admin login</h4>
+            <p>Use the password to open the full dashboard. Session stays only in this browser tab.</p>
+          </div>
+          <h2 class="admin-gate-title">Enter Admin Password</h2>
+          <p class="admin-gate-sub">This opens the editing panel for text, buttons, gallery, reels, downloads, schedule, and links.</p>
+          ${message ? `<div class="admin-preview" style="margin-bottom:1rem;border-color:rgba(255,120,120,.25)"><p>${esc(message)}</p></div>` : ''}
+          <div class="admin-row">
+            <input class="admin-field" id="admin-pass" type="password" placeholder="Admin password" autocomplete="current-password" />
+            <label style="display:flex;align-items:center;gap:.6rem;color:var(--mid);font-size:.9rem;">
+              <input type="checkbox" id="admin-show-pass" style="accent-color:var(--gold);" /> Show password
+            </label>
+            <button class="admin-action" id="admin-login-btn" type="button">Unlock dashboard</button>
+          </div>
+          <div class="admin-small" style="margin-top:1rem;color:var(--mid);line-height:1.6;">
+            GitHub Pages is static, so this is a strong client-side lock, but not the same as a private backend login.
+          </div>
+        </div>
+      </div>`;
+    const input = document.getElementById('admin-pass');
+    const btn = document.getElementById('admin-login-btn');
+    const show = document.getElementById('admin-show-pass');
+    input?.focus();
+    show?.addEventListener('change', () => { if (input) input.type = show.checked ? 'text' : 'password'; });
+    btn?.addEventListener('click', loginAdmin);
+    input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginAdmin(); });
+  }
+
+  function dashboardNav() {
+    return `
+      <div class="admin-tabs">
+        <button class="admin-tab ${state.tab === 'content' ? 'on' : ''}" data-tab="content">Content</button>
+        <button class="admin-tab ${state.tab === 'workshops' ? 'on' : ''}" data-tab="workshops">Workshops</button>
+        <button class="admin-tab ${state.tab === 'schedule' ? 'on' : ''}" data-tab="schedule">Schedule</button>
+        <button class="admin-tab ${state.tab === 'gallery' ? 'on' : ''}" data-tab="gallery">Gallery</button>
+        <button class="admin-tab ${state.tab === 'downloads' ? 'on' : ''}" data-tab="downloads">Downloads</button>
+        <button class="admin-tab ${state.tab === 'reels' ? 'on' : ''}" data-tab="reels">Reels</button>
+        <button class="admin-tab ${state.tab === 'links' ? 'on' : ''}" data-tab="links">Buttons & Links</button>
+      </div>
+    `;
+  }
+
+  function dashboardSkeleton() {
+    return `
+      <div class="admin-dash open" id="admin-dash">
+        <div class="admin-shell">
+          <aside class="admin-sidebar">
+            <div class="admin-brand">
+              <h2>Admin Dashboard</h2>
+              <p>Full-screen control center for page text, buttons, images, videos, downloads, and schedule items.</p>
+            </div>
+            ${dashboardNav()}
+            <div class="admin-small">
+              <strong>Tip:</strong> Use the move buttons to reorder items. Everything saves in the browser automatically after each change.
+            </div>
+          </aside>
+          <section class="admin-main">
+            <div class="admin-topbar">
+              <div>
+                <strong>Logged in</strong>
+                <div style="color:var(--mid);font-size:.88rem;">Changes are stored locally and restored on refresh.</div>
+              </div>
+              <div class="admin-top-actions">
+                <button class="admin-pill-btn" id="admin-export-btn" type="button">Export JSON</button>
+                <button class="admin-pill-btn" id="admin-import-btn" type="button">Import JSON</button>
+                <button class="admin-pill-btn" id="admin-lock-btn" type="button">Lock</button>
+                <button class="admin-pill-btn" id="admin-close-btn" type="button">Close</button>
+              </div>
+            </div>
+            <div id="admin-main-content"></div>
+          </section>
+        </div>
+      </div>
+    `;
+  }
+
+  function fieldGroup(label, value, id, type = 'text', placeholder = '') {
+    const isArea = type === 'textarea';
+    const field = isArea
+      ? `<textarea class="admin-field" id="${id}" placeholder="${esc(placeholder)}">${esc(value)}</textarea>`
+      : `<input class="admin-field" id="${id}" type="${type}" placeholder="${esc(placeholder)}" value="${esc(value)}" />`;
+    return `
+      <div>
+        <div style="margin:0 0 .35rem;color:var(--mid);font-size:.83rem;font-weight:600;">${esc(label)}</div>
+        ${field}
+      </div>
+    `;
+  }
+
+  function settingsSection() {
+    return `
+      <div class="admin-card">
+        <div class="admin-section-title">
+          <h3>Site text and buttons</h3>
+          <span class="counts">Edit hero, about, and contact content</span>
+        </div>
+        <div class="admin-form-grid three">
+          ${fieldGroup('Hero eyebrow', settings.eyebrow, 'set-eyebrow', 'text', 'Performance Artist')}
+          ${fieldGroup('Hero first name', settings.heroFirst, 'set-first', 'text', 'Pablo')}
+          ${fieldGroup('Hero last name', settings.heroLast, 'set-last', 'text', 'Talavera')}
+          ${fieldGroup('Hero description', settings.heroDesc, 'set-desc', 'text', 'Physical theatre · Circus arts')}
+          ${fieldGroup('About heading', settings.aboutHeading, 'set-about-heading', 'text', 'Pablo Talavera')}
+          ${fieldGroup('About text', settings.aboutBody, 'set-about-body', 'textarea', 'About paragraph')}
+          ${fieldGroup('About image URL', settings.aboutImage, 'set-about-image', 'text', 'Image URL')}
+          ${fieldGroup('Contact title', settings.ctaTitle, 'set-cta-title', 'textarea', "Let's work<br/>together")}
+          ${fieldGroup('Contact subtitle', settings.ctaSub, 'set-cta-sub', 'text', 'Performances · Workshops')}
+          ${fieldGroup('Contact page text', settings.contactBody, 'set-contact-body', 'textarea', 'Tell me about your event...')}
+          ${fieldGroup('Email link', settings.emailHref, 'set-email-href', 'text', 'mailto:...')}
+          ${fieldGroup('Email button label', settings.emailLabel, 'set-email-label', 'text', 'Email')}
+          ${fieldGroup('Instagram link', settings.instagramHref, 'set-insta-href', 'text', 'https://instagram.com/...')}
+          ${fieldGroup('Instagram label', settings.instagramLabel, 'set-insta-label', 'text', 'Instagram')}
+          ${fieldGroup('Hero button 1', settings.heroButton1Label, 'set-hero-btn-1', 'text', 'Schedule')}
+          ${fieldGroup('Hero button 2', settings.heroButton2Label, 'set-hero-btn-2', 'text', 'Contact')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-settings-btn" type="button">Save site settings</button>
+          <button class="admin-action secondary" id="reset-settings-btn" type="button">Reset defaults</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function workshopsSection() {
+    const editing = state.editing?.type === 'workshops' ? state.editing.index : null;
+    const item = editing != null ? adminWorkshops[editing] : {};
+    return `
+      <div class="admin-card">
+        <div class="admin-section-title">
+          <h3>Workshops</h3>
+          <span class="counts">${adminWorkshops?.length || 0} workshops</span>
+        </div>
+        <div class="admin-form-grid three">
+          ${fieldGroup('Title', item.title || '', 'workshop-title', 'text', 'Workshop title')}
+          ${fieldGroup('Subtitle', item.sub || '', 'workshop-sub', 'text', 'Short subtitle')}
+          ${fieldGroup('Type', item.type || '', 'workshop-type', 'text', 'Performance Training')}
+          ${fieldGroup('Duration', item.dur || '', 'workshop-dur', 'text', '90 min')}
+          ${fieldGroup('Tags (comma separated)', Array.isArray(item.tags) ? item.tags.join(', ') : (item.tags || ''), 'workshop-tags', 'text', 'All Levels, Beginner')}
+          ${fieldGroup('Overview', item.ov || '', 'workshop-ov', 'textarea', 'Main description')}
+          ${fieldGroup('Audience (comma separated)', Array.isArray(item.aud) ? item.aud.join(', ') : (item.aud || ''), 'workshop-aud', 'textarea', 'Who it is for')}
+          ${fieldGroup('Objectives (comma separated)', Array.isArray(item.obj) ? item.obj.join(', ') : (item.obj || ''), 'workshop-obj', 'textarea', 'Learning goals')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-workshop-btn" type="button">${editing != null ? 'Save workshop' : 'Add workshop'}</button>
+          ${editing != null ? '<button class="admin-action secondary" id="cancel-workshop-btn" type="button">Cancel edit</button>' : ''}
+        </div>
+        <div class="admin-list" id="admin-workshop-list"></div>
+      </div>
+    `;
+  }
+
+  function scheduleSection() {
+    const editing = state.editing?.type === 'schedule' ? state.editing.index : null;
+    const item = editing != null ? schedule[editing] : {};
+    return `
+      <div class="admin-card">
+        <div class="admin-section-title">
+          <h3>Schedule</h3>
+          <span class="counts">${schedule?.length || 0} entries</span>
+        </div>
+        <div class="admin-form-grid three">
+          ${fieldGroup('Day', item.day || '', 'sched-day', 'text', '15')}
+          ${fieldGroup('Month', item.month || '', 'sched-month', 'text', 'Apr 2026')}
+          ${fieldGroup('Event', item.event || '', 'sched-event', 'text', 'Festival name')}
+          ${fieldGroup('Location', item.location || '', 'sched-location', 'text', 'City / Country')}
+          ${fieldGroup('Badge text', item.badgeText || 'Event', 'sched-badge-text', 'text', 'Event')}
+          ${fieldGroup('Badge icon class', item.badgeIcon || 'fas fa-star', 'sched-badge-icon', 'text', 'fas fa-star')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-schedule-btn" type="button">${editing != null ? 'Save event' : 'Add event'}</button>
+          ${editing != null ? '<button class="admin-action secondary" id="cancel-schedule-btn" type="button">Cancel edit</button>' : ''}
+        </div>
+        <div class="admin-list" id="admin-schedule-list"></div>
+      </div>
+    `;
+  }
+
+  function gallerySection() {
+    const editing = state.editing?.type === 'gallery' ? state.editing.index : null;
+    const item = editing != null ? gallery[editing] : {};
+    return `
+      <div class="admin-card">
+        <div class="admin-section-title">
+          <h3>Gallery</h3>
+          <span class="counts">${gallery?.length || 0} images</span>
+        </div>
+        <div class="admin-form-grid">
+          ${fieldGroup('Image URL', item.url || '', 'gallery-url', 'text', 'https://...')}
+          ${fieldGroup('Label', item.label || '', 'gallery-label', 'text', 'Stage photo')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-gallery-btn" type="button">${editing != null ? 'Save image' : 'Add image'}</button>
+          ${editing != null ? '<button class="admin-action secondary" id="cancel-gallery-btn" type="button">Cancel edit</button>' : ''}
+        </div>
+        <div class="admin-list" id="admin-gallery-list"></div>
+      </div>
+    `;
+  }
+
+  function downloadsSection() {
+    const editing = state.editing?.type === 'downloads' ? state.editing.index : null;
+    const item = editing != null ? downloads[editing] : {};
+    return `
+      <div class="admin-card half">
+        <div class="admin-section-title">
+          <h3>Downloads</h3>
+          <span class="counts">${downloads?.length || 0} files</span>
+        </div>
+        <div class="admin-form-grid">
+          ${fieldGroup('Title', item.title || '', 'download-title', 'text', 'Press kit')}
+          ${fieldGroup('Google Drive or file URL', item.url || '', 'download-url', 'text', 'Drive share link')}
+          ${fieldGroup('Button label', item.label || '', 'download-label', 'text', 'Download PDF')}
+          ${fieldGroup('Icon class', item.icon || 'fas fa-file-pdf', 'download-icon', 'text', 'fas fa-file-pdf')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-download-btn" type="button">${editing != null ? 'Save download' : 'Add download'}</button>
+          ${editing != null ? '<button class="admin-action secondary" id="cancel-download-btn" type="button">Cancel edit</button>' : ''}
+        </div>
+        <div class="admin-list" id="admin-download-list"></div>
+      </div>
+    `;
+  }
+
+  function reelsSection() {
+    const editing = state.editing?.type === 'reels' ? state.editing.index : null;
+    const item = editing != null ? reels[editing] : {};
+    return `
+      <div class="admin-card half">
+        <div class="admin-section-title">
+          <h3>Reels / video embeds</h3>
+          <span class="counts">${reels?.length || 0} embeds</span>
+        </div>
+        <div class="admin-form-grid">
+          ${fieldGroup('Title', item.title || '', 'reel-title', 'text', 'Showreel')}
+          ${fieldGroup('Embed link', item.url || '', 'reel-url', 'text', 'YouTube, Vimeo, Instagram')}
+          ${fieldGroup('Label', item.label || '', 'reel-label', 'text', 'Embedded video')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-reel-btn" type="button">${editing != null ? 'Save reel' : 'Add reel'}</button>
+          ${editing != null ? '<button class="admin-action secondary" id="cancel-reel-btn" type="button">Cancel edit</button>' : ''}
+        </div>
+        <div class="admin-list" id="admin-reel-list"></div>
+      </div>
+    `;
+  }
+
+  function linksSection() {
+    const editing = state.editing?.type === 'links' ? state.editing.index : null;
+    const item = editing != null ? adminLinks[editing] : {};
+    return `
+      <div class="admin-card">
+        <div class="admin-section-title">
+          <h3>Buttons & links</h3>
+          <span class="counts">${adminLinks.length} buttons</span>
+        </div>
+        <div class="admin-form-grid three">
+          ${fieldGroup('Icon class', item.ico || 'fas fa-link', 'link-ico', 'text', 'fas fa-link')}
+          ${fieldGroup('Title', item.title || '', 'link-title', 'text', 'Button title')}
+          ${fieldGroup('Description', item.desc || '', 'link-desc', 'text', 'Short description')}
+          ${fieldGroup('URL', item.url || '', 'link-url', 'text', 'https://...')}
+        </div>
+        <div class="admin-savebar">
+          <button class="admin-action" id="save-link-btn" type="button">${editing != null ? 'Save link' : 'Add link'}</button>
+          ${editing != null ? '<button class="admin-action secondary" id="cancel-link-btn" type="button">Cancel edit</button>' : ''}
+        </div>
+        <div class="admin-list" id="admin-links-list"></div>
+      </div>
+    `;
+  }
+
+  function renderDashboard() {
+    const mount = document.getElementById('admin-main-content');
+    if (!mount) return;
+    mount.innerHTML = {
+      content: `<div class="admin-grid">${settingsSection()}</div>`,
+      workshops: `<div class="admin-grid">${workshopsSection()}</div>`,
+      schedule: `<div class="admin-grid">${scheduleSection()}</div>`,
+      gallery: `<div class="admin-grid">${gallerySection()}</div>`,
+      downloads: `<div class="admin-grid">${downloadsSection()}</div>`,
+      reels: `<div class="admin-grid">${reelsSection()}</div>`,
+      links: `<div class="admin-grid">${linksSection()}</div>`,
+    }[state.tab];
+    document.querySelectorAll('.admin-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.tab = btn.dataset.tab;
+        renderDashboard();
+      });
+    });
+    document.getElementById('admin-export-btn')?.addEventListener('click', exportAllData);
+    document.getElementById('admin-import-btn')?.addEventListener('click', importAllData);
+    document.getElementById('admin-lock-btn')?.addEventListener('click', () => logoutAdmin(false));
+    document.getElementById('admin-close-btn')?.addEventListener('click', closeAdmin);
+    bindSectionEvents();
+    renderLists();
+    applySettings();
+  }
+
+  function renderLists() {
+    if (state.tab === 'workshops') renderWorkshopsList();
+    if (state.tab === 'schedule') renderScheduleList();
+    if (state.tab === 'gallery') renderGalleryList();
+    if (state.tab === 'downloads') renderDownloadsList();
+    if (state.tab === 'reels') renderReelsList();
+    if (state.tab === 'links') renderLinksList();
+  }
+
+  function bindListActions(listEl) {
+    listEl.querySelectorAll('[data-act]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = Number(btn.dataset.i);
+        const act = btn.dataset.act;
+        const type = btn.dataset.type;
+        if (act === 'edit') return beginEdit(type, index);
+        if (act === 'delete') return removeItem(type, index);
+        if (act === 'up') return moveItem(type, index, -1);
+        if (act === 'down') return moveItem(type, index, 1);
+      });
+    });
+  }
+
+  function renderWorkshopsList() {
+    const list = document.getElementById('admin-workshop-list');
+    if (!list) return;
+    if (!adminWorkshops?.length) {
+      list.innerHTML = '<div class="admin-preview"><p>No workshops yet.</p></div>';
+      return;
+    }
+    list.innerHTML = adminWorkshops.map((item, i) => `
+      <div class="admin-list-item compact">
+        <div>
+          <div class="admin-item-title">${esc(item.title)}</div>
+          <p class="admin-item-sub">${esc(item.type)} · ${esc(item.dur)}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="admin-mini ok" type="button" data-type="workshops" data-i="${i}" data-act="up">↑</button>
+          <button class="admin-mini ok" type="button" data-type="workshops" data-i="${i}" data-act="down">↓</button>
+          <button class="admin-mini ok" type="button" data-type="workshops" data-i="${i}" data-act="edit">Edit</button>
+          <button class="admin-mini warn" type="button" data-type="workshops" data-i="${i}" data-act="delete">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    bindListActions(list);
+  }
+
+  function renderScheduleList() {
+    const list = document.getElementById('admin-schedule-list');
+    if (!list) return;
+    if (!schedule?.length) {
+      list.innerHTML = '<div class="admin-preview"><p>No schedule items yet.</p></div>';
+      return;
+    }
+    list.innerHTML = schedule.map((item, i) => `
+      <div class="admin-list-item compact">
+        <div>
+          <div class="admin-item-title">${esc(item.day)} ${esc(item.month)} — ${esc(item.event)}</div>
+          <p class="admin-item-sub">${esc(item.location)} · ${esc(item.badgeText || 'Event')}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="admin-mini ok" type="button" data-type="schedule" data-i="${i}" data-act="up">↑</button>
+          <button class="admin-mini ok" type="button" data-type="schedule" data-i="${i}" data-act="down">↓</button>
+          <button class="admin-mini ok" type="button" data-type="schedule" data-i="${i}" data-act="edit">Edit</button>
+          <button class="admin-mini warn" type="button" data-type="schedule" data-i="${i}" data-act="delete">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    bindListActions(list);
+  }
+
+  function renderGalleryList() {
+    const list = document.getElementById('admin-gallery-list');
+    if (!list) return;
+    if (!gallery?.length) {
+      list.innerHTML = '<div class="admin-preview"><p>No gallery images yet.</p></div>';
+      return;
+    }
+    list.innerHTML = gallery.map((item, i) => `
+      <div class="admin-list-item">
+        <img src="${esc(item.url)}" alt="${esc(item.label)}" />
+        <div>
+          <div class="admin-item-title">${esc(item.label)}</div>
+          <p class="admin-item-sub">${esc(item.url)}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="admin-mini ok" type="button" data-type="gallery" data-i="${i}" data-act="up">↑</button>
+          <button class="admin-mini ok" type="button" data-type="gallery" data-i="${i}" data-act="down">↓</button>
+          <button class="admin-mini ok" type="button" data-type="gallery" data-i="${i}" data-act="edit">Edit</button>
+          <button class="admin-mini warn" type="button" data-type="gallery" data-i="${i}" data-act="delete">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    bindListActions(list);
+  }
+
+  function renderDownloadsList() {
+    const list = document.getElementById('admin-download-list');
+    if (!list) return;
+    if (!downloads?.length) {
+      list.innerHTML = '<div class="admin-preview"><p>No downloads yet.</p></div>';
+      return;
+    }
+    list.innerHTML = downloads.map((item, i) => `
+      <div class="admin-list-item compact">
+        <div>
+          <div class="admin-item-title"><i class="${esc(item.icon || 'fas fa-file-pdf')}"></i> ${esc(item.title)}</div>
+          <p class="admin-item-sub">${esc(item.label || 'Download')} · ${esc(item.url)}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="admin-mini ok" type="button" data-type="downloads" data-i="${i}" data-act="up">↑</button>
+          <button class="admin-mini ok" type="button" data-type="downloads" data-i="${i}" data-act="down">↓</button>
+          <button class="admin-mini ok" type="button" data-type="downloads" data-i="${i}" data-act="edit">Edit</button>
+          <button class="admin-mini warn" type="button" data-type="downloads" data-i="${i}" data-act="delete">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    bindListActions(list);
+  }
+
+  function renderReelsList() {
+    const list = document.getElementById('admin-reel-list');
+    if (!list) return;
+    if (!reels?.length) {
+      list.innerHTML = '<div class="admin-preview"><p>No reels yet.</p></div>';
+      return;
+    }
+    list.innerHTML = reels.map((item, i) => `
+      <div class="admin-list-item">
+        <iframe src="${esc(normalizeReelUrl(item.url))}" title="${esc(item.title)}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <div>
+          <div class="admin-item-title">${esc(item.title)}</div>
+          <p class="admin-item-sub">${esc(item.label || 'Embedded video')} · ${esc(item.url)}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="admin-mini ok" type="button" data-type="reels" data-i="${i}" data-act="up">↑</button>
+          <button class="admin-mini ok" type="button" data-type="reels" data-i="${i}" data-act="down">↓</button>
+          <button class="admin-mini ok" type="button" data-type="reels" data-i="${i}" data-act="edit">Edit</button>
+          <button class="admin-mini warn" type="button" data-type="reels" data-i="${i}" data-act="delete">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    bindListActions(list);
+  }
+
+  function renderLinksList() {
+    const list = document.getElementById('admin-links-list');
+    if (!list) return;
+    if (!adminLinks.length) {
+      list.innerHTML = '<div class="admin-preview"><p>No links yet.</p></div>';
+      return;
+    }
+    list.innerHTML = adminLinks.map((item, i) => `
+      <div class="admin-list-item compact">
+        <div>
+          <div class="admin-item-title"><i class="${esc(item.ico)}"></i> ${esc(item.title)}</div>
+          <p class="admin-item-sub">${esc(item.desc)} · ${esc(item.url)}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="admin-mini ok" type="button" data-type="links" data-i="${i}" data-act="up">↑</button>
+          <button class="admin-mini ok" type="button" data-type="links" data-i="${i}" data-act="down">↓</button>
+          <button class="admin-mini ok" type="button" data-type="links" data-i="${i}" data-act="edit">Edit</button>
+          <button class="admin-mini warn" type="button" data-type="links" data-i="${i}" data-act="delete">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    bindListActions(list);
+  }
+
+  function bindSectionEvents() {
+    document.getElementById('save-settings-btn')?.addEventListener('click', saveSettingsFromForm);
+    document.getElementById('reset-settings-btn')?.addEventListener('click', resetSettings);
+    document.getElementById('save-workshop-btn')?.addEventListener('click', saveWorkshopFromForm);
+    document.getElementById('cancel-workshop-btn')?.addEventListener('click', clearEdit);
+    document.getElementById('save-schedule-btn')?.addEventListener('click', saveScheduleFromForm);
+    document.getElementById('cancel-schedule-btn')?.addEventListener('click', clearEdit);
+    document.getElementById('save-gallery-btn')?.addEventListener('click', saveGalleryFromForm);
+    document.getElementById('cancel-gallery-btn')?.addEventListener('click', clearEdit);
+    document.getElementById('save-download-btn')?.addEventListener('click', saveDownloadFromForm);
+    document.getElementById('cancel-download-btn')?.addEventListener('click', clearEdit);
+    document.getElementById('save-reel-btn')?.addEventListener('click', saveReelFromForm);
+    document.getElementById('cancel-reel-btn')?.addEventListener('click', clearEdit);
+    document.getElementById('save-link-btn')?.addEventListener('click', saveLinkFromForm);
+    document.getElementById('cancel-link-btn')?.addEventListener('click', clearEdit);
+  }
+
+  function beginEdit(type, index) {
+    state.editing = { type, index };
+    renderDashboard();
+  }
+
+  function clearEdit() {
+    state.editing = null;
+    renderDashboard();
+  }
+
+  function getValue(id) {
+    return document.getElementById(id)?.value.trim() || '';
+  }
+
+  function saveSettingsFromForm() {
+    settings = {
+      eyebrow: getValue('set-eyebrow'),
+      heroFirst: getValue('set-first'),
+      heroLast: getValue('set-last'),
+      heroDesc: getValue('set-desc'),
+      aboutHeading: getValue('set-about-heading'),
+      aboutBody: getValue('set-about-body'),
+      aboutImage: getValue('set-about-image'),
+      ctaTitle: document.getElementById('set-cta-title')?.value || '',
+      ctaSub: getValue('set-cta-sub'),
+      contactBody: getValue('set-contact-body'),
+      emailHref: getValue('set-email-href'),
+      emailLabel: getValue('set-email-label'),
+      instagramHref: getValue('set-insta-href'),
+      instagramLabel: getValue('set-insta-label'),
+      heroButton1Label: getValue('set-hero-btn-1'),
+      heroButton2Label: getValue('set-hero-btn-2'),
+    };
+    saveSettings();
+    applySettings();
+    alert('Settings saved');
+  }
+
+  function resetSettings() {
+    settings = structuredClone(DEFAULT_SETTINGS);
+    saveSettings();
+    renderDashboard();
+    applySettings();
+  }
+
+  function saveWorkshopFromForm() {
+    const item = {
+      id: state.editing?.type === 'workshops' ? adminWorkshops[state.editing.index].id : uid(),
+      title: getValue('workshop-title'),
+      sub: getValue('workshop-sub'),
+      type: getValue('workshop-type'),
+      dur: getValue('workshop-dur'),
+      tags: getValue('workshop-tags').split(',').map(s => s.trim()).filter(Boolean),
+      ov: getValue('workshop-ov'),
+      aud: getValue('workshop-aud').split(',').map(s => s.trim()).filter(Boolean),
+      obj: getValue('workshop-obj').split(',').map(s => s.trim()).filter(Boolean),
+    };
+    if (!item.title || !item.sub || !item.type || !item.dur || !item.ov) return alert('Fill workshop title, subtitle, type, duration, and overview.');
+    if (state.editing?.type === 'workshops') adminWorkshops[state.editing.index] = item;
+    else adminWorkshops.unshift(item);
+    workshops = adminWorkshops;
+    saveWorkshops();
+    renderWS();
+    clearEdit();
+  }
+
+  function saveScheduleFromForm() {
+    const item = {
+      id: state.editing?.type === 'schedule' ? schedule[state.editing.index].id : uid(),
+      day: getValue('sched-day'),
+      month: getValue('sched-month'),
+      event: getValue('sched-event'),
+      location: getValue('sched-location'),
+      badgeText: getValue('sched-badge-text') || 'Event',
+      badgeIcon: getValue('sched-badge-icon') || 'fas fa-star',
+      past: false,
+    };
+    if (!item.day || !item.month || !item.event || !item.location) return alert('Fill all schedule fields.');
+    if (state.editing?.type === 'schedule') schedule[state.editing.index] = item;
+    else schedule.unshift(item);
+    saveJSON(STORAGE_KEYS.schedule, schedule);
+    renderSchedule();
+    clearEdit();
+  }
+
+  function saveGalleryFromForm() {
+    const item = {
+      id: state.editing?.type === 'gallery' ? gallery[state.editing.index].id : uid(),
+      url: getValue('gallery-url'),
+      label: getValue('gallery-label') || 'Photo',
+    };
+    if (!item.url) return alert('Fill the image URL.');
+    if (state.editing?.type === 'gallery') gallery[state.editing.index] = item;
+    else gallery.unshift(item);
+    saveJSON(STORAGE_KEYS.gallery, gallery);
+    renderGallery();
+    clearEdit();
+  }
+
+  function saveDownloadFromForm() {
+    const item = {
+      id: state.editing?.type === 'downloads' ? downloads[state.editing.index].id : uid(),
+      title: getValue('download-title'),
+      url: getValue('download-url'),
+      label: getValue('download-label') || 'Download',
+      icon: getValue('download-icon') || 'fas fa-file-pdf',
+    };
+    if (!item.title || !item.url) return alert('Fill download title and URL.');
+    if (state.editing?.type === 'downloads') downloads[state.editing.index] = item;
+    else downloads.unshift(item);
+    saveJSON(STORAGE_KEYS.downloads, downloads);
+    renderDownloads();
+    clearEdit();
+  }
+
+  function saveReelFromForm() {
+    const item = {
+      id: state.editing?.type === 'reels' ? reels[state.editing.index].id : uid(),
+      title: getValue('reel-title'),
+      url: getValue('reel-url'),
+      label: getValue('reel-label') || 'Embedded video',
+    };
+    if (!item.title || !item.url) return alert('Fill reel title and URL.');
+    if (state.editing?.type === 'reels') reels[state.editing.index] = item;
+    else reels.unshift(item);
+    saveJSON(STORAGE_KEYS.reels, reels);
+    renderReels();
+    clearEdit();
+  }
+
+  function saveLinkFromForm() {
+    const item = {
+      id: state.editing?.type === 'links' ? adminLinks[state.editing.index].id : uid(),
+      ico: getValue('link-ico') || 'fas fa-link',
+      title: getValue('link-title'),
+      desc: getValue('link-desc'),
+      url: getValue('link-url'),
+    };
+    if (!item.title || !item.url) return alert('Fill link title and URL.');
+    if (state.editing?.type === 'links') adminLinks[state.editing.index] = item;
+    else adminLinks.unshift(item);
+    saveLinks();
+    renderLinktreeNew();
+    clearEdit();
+  }
+
+  function moveItem(type, index, dir) {
+    const arr = type === 'workshops' ? adminWorkshops
+      : type === 'gallery' ? gallery
+      : type === 'schedule' ? schedule
+      : type === 'downloads' ? downloads
+      : type === 'reels' ? reels
+      : adminLinks;
+    const next = index + dir;
+    if (next < 0 || next >= arr.length) return;
+    [arr[index], arr[next]] = [arr[next], arr[index]];
+    if (type === 'workshops') { workshops = adminWorkshops; saveWorkshops(); renderWS(); }
+    else if (type === 'gallery') { saveJSON(STORAGE_KEYS.gallery, arr); renderGallery(); }
+    else if (type === 'schedule') { saveJSON(STORAGE_KEYS.schedule, arr); renderSchedule(); }
+    else if (type === 'downloads') { saveJSON(STORAGE_KEYS.downloads, arr); renderDownloads(); }
+    else if (type === 'reels') { saveJSON(STORAGE_KEYS.reels, arr); renderReels(); }
+    else { saveLinks(); renderLinktreeNew(); }
+    renderDashboard();
+  }
+
+  function removeItem(type, index) {
+    const yes = confirm('Delete this item?');
+    if (!yes) return;
+    if (type === 'workshops') { adminWorkshops.splice(index, 1); workshops = adminWorkshops; saveWorkshops(); renderWS(); }
+    else if (type === 'gallery') { gallery.splice(index, 1); saveJSON(STORAGE_KEYS.gallery, gallery); renderGallery(); }
+    else if (type === 'schedule') { schedule.splice(index, 1); saveJSON(STORAGE_KEYS.schedule, schedule); renderSchedule(); }
+    else if (type === 'downloads') { downloads.splice(index, 1); saveJSON(STORAGE_KEYS.downloads, downloads); renderDownloads(); }
+    else if (type === 'reels') { reels.splice(index, 1); saveJSON(STORAGE_KEYS.reels, reels); renderReels(); }
+    else { adminLinks.splice(index, 1); saveLinks(); renderLinktreeNew(); }
+    clearEdit();
+  }
+
+  function renderLinktreeNew() {
+    const grid = document.getElementById('linktree-grid');
+    if (!grid) return;
+    grid.innerHTML = adminLinks.map(l => `
+      <a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" style="color:inherit;">
+        <div class="link-card" role="listitem">
+          <div class="link-ico" aria-hidden="true"><i class="${esc(l.ico)}"></i></div>
+          <div class="link-content"><h3>${esc(l.title)}</h3><p>${esc(l.desc)}</p></div>
+          <i class="fas fa-arrow-right link-arrow" aria-hidden="true"></i>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  function mountDashboard() {
+    root.innerHTML = dashboardSkeleton();
+    renderDashboard();
+  }
+
+  async function loginAdmin() {
+    const input = document.getElementById('admin-pass');
+    const raw = input?.value || '';
+    const hash = await sha256Hex(raw);
+    if (hash !== ADMIN_PASSWORD_HASH) {
+      showGate('Wrong password. Try again.');
+      return;
+    }
+    sessionStorage.setItem(ADMIN_SESSION_KEY, '1');
+    state.authed = true;
+    setIdleTimer();
+    openRoot();
+    mountDashboard();
+  }
+
+  function logoutAdmin(silent = false) {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    state.authed = false;
+    clearTimeout(state.idleTimer);
+    if (silent) return;
+    openRoot();
+    showGate();
+  }
+
+  function toggleAdminOverlay() {
+    normalizeArrays();
+    openRoot();
+    if (!state.authed) {
+      showGate();
+      return;
+    }
+    mountDashboard();
+  }
+
+  function closeAdmin() {
+    closeRoot();
+  }
+
+  function exportAllData() {
+    const data = {
+      settings,
+      links: adminLinks,
+      workshops: adminWorkshops,
+      gallery: gallery,
+      schedule: schedule,
+      downloads: downloads,
+      reels: reels,
+      exportedAt: new Date().toISOString(),
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `portfolio-backup-${Date.now()}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  function importAllData() {
+    const file = document.createElement('input');
+    file.type = 'file';
+    file.accept = 'application/json,.json';
+    file.addEventListener('change', () => {
+      const chosen = file.files?.[0];
+      if (!chosen) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          if (data.settings) {
+            settings = { ...DEFAULT_SETTINGS, ...data.settings };
+            saveSettings();
+          }
+          if (Array.isArray(data.links)) {
+            adminLinks = data.links.map(item => ({ id: item.id || uid(), ...item }));
+            saveLinks();
+          }
+          if (Array.isArray(data.workshops)) {
+            adminWorkshops = data.workshops.map(item => ({ id: item.id || uid(), ...item }));
+            workshops = adminWorkshops;
+            saveWorkshops();
+            renderWS();
+          }
+          if (Array.isArray(data.gallery)) {
+            gallery = data.gallery.map(item => ({ id: item.id || uid(), ...item }));
+            saveJSON(STORAGE_KEYS.gallery, gallery);
+          }
+          if (Array.isArray(data.schedule)) {
+            schedule = data.schedule.map(item => ({ id: item.id || uid(), ...item }));
+            saveJSON(STORAGE_KEYS.schedule, schedule);
+          }
+          if (Array.isArray(data.downloads)) {
+            downloads = data.downloads.map(item => ({ id: item.id || uid(), ...item }));
+            saveJSON(STORAGE_KEYS.downloads, downloads);
+          }
+          if (Array.isArray(data.reels)) {
+            reels = data.reels.map(item => ({ id: item.id || uid(), ...item }));
+            saveJSON(STORAGE_KEYS.reels, reels);
+          }
+          applySettings();
+          renderGallery();
+          renderSchedule();
+          renderDownloads();
+          renderReels();
+          renderLinktreeNew();
+          alert('Imported successfully.');
+        } catch {
+          alert('Could not import the file.');
+        }
+      };
+      reader.readAsText(chosen);
+    });
+    file.click();
+  }
+
+  window.toggleAdmin = toggleAdminOverlay;
+  window.closeAdmin = closeAdmin;
+  window.addEvent = () => { if (!state.authed) return toggleAdminOverlay(); state.tab = 'schedule'; renderDashboard(); };
+  window.addDownload = () => { if (!state.authed) return toggleAdminOverlay(); state.tab = 'downloads'; renderDashboard(); };
+  window.addReel = () => { if (!state.authed) return toggleAdminOverlay(); state.tab = 'reels'; renderDashboard(); };
+  window.addGalleryImage = () => { if (!state.authed) return toggleAdminOverlay(); state.tab = 'gallery'; renderDashboard(); };
+  window.delGalleryImage = (i) => { if (!state.authed) return; removeItem('gallery', i); };
+  window.delDownload = (i) => { if (!state.authed) return; removeItem('downloads', i); };
+  window.delReel = (i) => { if (!state.authed) return; removeItem('reels', i); };
+  window.exportData = exportAllData;
+  window.importData = importAllData;
+  window.renderLinktree = () => { renderLinktreeNew(); };
+  window.saveWorkshop = saveWorkshopFromForm;
+
+  function init() {
+    normalizeArrays();
+    settings = loadSettings();
+    adminLinks = loadLinks();
+    adminWorkshops = loadWorkshops();
+    workshops = adminWorkshops;
+    applySettings();
+    renderLinktreeNew();
+    if (state.authed) setIdleTimer();
+  }
+
+  init();
+})();
+</script>
+
 </body>
 </html>

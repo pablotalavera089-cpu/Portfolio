@@ -2495,27 +2495,9 @@
                 <div class="gallery-inner">
                     <h2 class="gallery-title"><i class="fas fa-images" aria-hidden="true"></i> Gallery</h2>
                     <div class="gallery-grid" id="gallery-grid" role="list"></div>
-                </div>
-            </section>
-        </div>
 
-        <!-- MEDIA PAGE -->
-        <div id="pg-media" class="pg" role="region" aria-label="Media page">
-            <section class="media-page-sec">
-                <div class="gallery-inner">
-                    <h2 class="gallery-title"><i class="fas fa-photo-film" aria-hidden="true"></i> Media</h2>
-                    <div class="media-hub">
+                    <div class="media-hub" style="margin-top:2.2rem;">
                         <section class="media-block rv">
-                            <div class="media-block-head">
-                                <div>
-                                    <h3 class="media-block-title"><i class="fas fa-download" aria-hidden="true"></i> Media & Press Downloads</h3>
-                                    <p class="media-block-sub">Add your Google Drive links in the admin panel to offer a press kit, profile PDF, tech rider, or zipped media folder.</p>
-                                </div>
-                            </div>
-                            <div class="download-grid" id="download-grid"></div>
-                        </section>
-
-                        <section class="media-block rv d1">
                             <div class="media-block-head">
                                 <div>
                                     <h3 class="media-block-title"><i class="fas fa-images" aria-hidden="true"></i> Photo Slideshow</h3>
@@ -2537,6 +2519,26 @@
                                 </div>
                             </div>
                             <div class="reel-grid" id="reel-grid"></div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- MEDIA PAGE -->
+        <div id="pg-media" class="pg" role="region" aria-label="Media page">
+            <section class="media-page-sec">
+                <div class="gallery-inner">
+                    <h2 class="gallery-title"><i class="fas fa-file-download" aria-hidden="true"></i> Media / Press</h2>
+                    <div class="media-hub">
+                        <section class="media-block rv">
+                            <div class="media-block-head">
+                                <div>
+                                    <h3 class="media-block-title"><i class="fas fa-download" aria-hidden="true"></i> Media & Press Downloads</h3>
+                                    <p class="media-block-sub">Add your Google Drive links in the admin panel to offer a press kit, profile PDF, tech rider, or zipped media folder.</p>
+                                </div>
+                            </div>
+                            <div class="download-grid" id="download-grid"></div>
                         </section>
                     </div>
                 </div>
@@ -2857,15 +2859,47 @@ function normalizeDriveDownloadUrl(url) {
 
 function normalizeReelUrl(url) {
     if (!url) return '';
-    const ytWatch = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
-    const ytShort = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
-    const ytEmbed = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/);
-    if (ytEmbed) return url;
-    if (ytWatch) return `https://www.youtube.com/embed/${ytWatch[1]}`;
-    if (ytShort) return `https://www.youtube.com/embed/${ytShort[1]}`;
-    if (/instagram\.com\/(?:reel|p|tv)\//.test(url) && !/\/embed\/?$/.test(url)) return url.replace(/\/?$/, '') + 'embed';
-    const vimeo = url.match(/vimeo\.com\/(\d+)/);
-    if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`;
+    try {
+        const parsed = new URL(url);
+        const host = parsed.hostname.replace(/^www\./, '');
+        const path = parsed.pathname.replace(/\/$/, '');
+
+        if (host.includes('youtu.be')) {
+            const id = path.split('/').filter(Boolean)[0];
+            if (id) return `https://www.youtube-nocookie.com/embed/${id}`;
+        }
+
+        if (host.includes('youtube.com') || host.includes('youtube-nocookie.com')) {
+            const shorts = path.match(/^\/shorts\/([a-zA-Z0-9_-]{6,})/);
+            const embed = path.match(/^\/embed\/([a-zA-Z0-9_-]{6,})/);
+            const watch = parsed.searchParams.get('v');
+            const list = parsed.searchParams.get('list');
+            if (embed) return `https://www.youtube-nocookie.com/embed/${embed[1]}`;
+            if (shorts) return `https://www.youtube-nocookie.com/embed/${shorts[1]}`;
+            if (watch) {
+                const extra = list ? `?list=${encodeURIComponent(list)}` : '';
+                return `https://www.youtube-nocookie.com/embed/${watch}${extra}`;
+            }
+        }
+
+        if (host.includes('vimeo.com')) {
+            const match = path.match(/\/(\d+)/);
+            if (match) return `https://player.vimeo.com/video/${match[1]}`;
+        }
+
+        if (host.includes('instagram.com')) {
+            if (/\/(reel|p|tv)\//.test(path) && !/\/embed$/.test(path)) {
+                return `${parsed.origin}${path.replace(/\/$/, '')}/embed/`;
+            }
+        }
+    } catch (err) {
+        const ytWatch = url.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+        const ytShort = url.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+        const ytEmbed = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/);
+        if (ytEmbed) return `https://www.youtube-nocookie.com/embed/${ytEmbed[1]}`;
+        if (ytWatch) return `https://www.youtube-nocookie.com/embed/${ytWatch[1]}`;
+        if (ytShort) return `https://www.youtube-nocookie.com/embed/${ytShort[1]}`;
+    }
     return url;
 }
 
@@ -2925,17 +2959,20 @@ function renderDownloads() {
 function renderReels() {
     const grid = document.getElementById('reel-grid');
     if (!grid) return;
-    grid.innerHTML = reels.length ? reels.map(item => `
+    grid.innerHTML = reels.length ? reels.map(item => {
+        const embedUrl = normalizeReelUrl(item.url);
+        return `
         <article class="reel-card">
-            <iframe class="reel-frame" src="${normalizeReelUrl(item.url)}" title="${item.title || 'Showreel'}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="reel-frame" src="${embedUrl}" title="${item.title || 'Showreel'}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <div class="reel-info">
                 <div>
                     <h4 class="reel-name">${item.title || 'Showreel'}</h4>
                     <div class="reel-source">${item.label || 'Embedded video'}</div>
                 </div>
+                <a class="mini-link" href="${item.url}" target="_blank" rel="noopener noreferrer">Open original link</a>
             </div>
-        </article>
-    `).join('') : '<div class="media-empty">No showreels yet. Add an embed link from YouTube, Vimeo, or Instagram in the admin panel.</div>';
+        </article>`;
+    }).join('') : '<div class="media-empty">No showreels yet. Add an embed link from YouTube, Vimeo, or Instagram in the admin panel.</div>';
 }
 
 function renderSchedule() {
@@ -2959,7 +2996,8 @@ function renderSchedule() {
 function renderGallery() {
     const grid = document.getElementById('gallery-grid');
     if (!grid) return;
-    grid.innerHTML = gallery.map((img, i) => `
+    const ordered = [...gallery];
+    grid.innerHTML = ordered.map((img, i) => `
         <div class="gallery-item" onclick="updateAboutImage('${img.url}')" role="listitem" tabindex="0">
             <img src="${img.url}" alt="${img.label}" loading="lazy"/>
             <div class="gallery-label">${img.label}</div>
